@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [user_id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [id], references: [user_id], onDelete: Cascade)
+}
+
+model User {
+  user_id       String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  comments      Comment[]
+  snippets      Snippet[]
+  posts         Post[]
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Profile {
+  profile_id  String    @id @default(cuid())
+  email       String?   @unique(map: "users.email_unique")
+  githubUrl   String?   @map(name: "github_url")
+  githubImage String?   @map(name: "github_image")
+  bio         String    @db.Text
+  createdAt   DateTime? @default(now()) @map(name: "created_at")
+  updatedAt   DateTime? @updatedAt @map(name: "updated_at")
+  lastSeen    DateTime? @map(name: "last_seen")
+}
+
+model Post {
+  post_id   String    @id @default(cuid())
+  title     String    @unique @db.VarChar(256)
+  body      String    @db.Text
+  slug      String?   @unique
+  levels    level?    @default(Beginner)
+  types     type?     @default(Learning)
+  views     String?
+  likes     String?
+  tags      String?
+  published Boolean?  @default(false)
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+  author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
+  authorId  String?
+  comments  Comment[]
+}
+
+enum type {
+  Learning
+  Question
+  Blog
+}
+
+enum level {
+  Beginner
+  Advanced
+  Expert
+  Master
+}
+
+model Snippet {
+  snippet_id String    @id @default(cuid())
+  title      String    @db.VarChar(256)
+  slug       String    @unique
+  url        String?
+  body       String?   @db.Text
+  createdAt  DateTime? @default(now()) @map(name: "created_at")
+  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  published  Boolean?  @default(false)
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  body      String    @db.VarChar(300)
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+  post      Post      @relation(fields: [postId], references: [post_id])
+  author    User      @relation(fields: [authorId], references: [user_id])
+  authorId  String
+  postId    String
+}
