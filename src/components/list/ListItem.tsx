@@ -6,6 +6,7 @@ import {
   AiFillFileImage,
   AiFillGooglePlusCircle,
 } from "react-icons/ai";
+import Moment from "react-moment";
 
 const ListItem = ({ data }) => {
   const [color, setColor] = useState("");
@@ -42,8 +43,8 @@ const ListItem = ({ data }) => {
 
   const tag = tags?.split();
 
-  //Todo figure out why color is empty
-  //Todo use momentsjs to change created at and updated at
+  //Todo figure out why color is empty - DONE
+  //Todo use momentsjs to change created at and updated at - DONE
   //Todo fix links to be a list - DONE
   //Todo create categories to reference tags - DONE
 
@@ -112,9 +113,13 @@ const ListItem = ({ data }) => {
           <div
             className={`flex justify-between text-gray-900 font-medium text-sm ${myColor}`}
           >
-            <div>Created: {createdAt}</div>
+            <div>
+              Created:<Moment fromNow>{createdAt}</Moment>{" "}
+            </div>
             <div>Level: {levels}</div>
-            <div>Updated: {updatedAt}</div>
+            <div>
+              Updated: <Moment fromNow>{updatedAt}</Moment>
+            </div>
           </div>
         </div>
       </Link>
