@@ -43,11 +43,6 @@ const ListItem = ({ data }) => {
 
   const tag = tags?.split();
 
-  //Todo figure out why color is empty - DONE
-  //Todo use momentsjs to change created at and updated at - DONE
-  //Todo fix links to be a list - DONE
-  //Todo create categories to reference tags - DONE
-
   return (
     <>
       <Link href={`/post/${slug}`}>
