@@ -1,8 +1,7 @@
-import React from "react";
 import Editor from "../components/editor/Editor";
 
 function createpost() {
-  const link = "http://localhost:3000/api/post/create";
+  const link = `${process.env.NEXTAUTH_URL}/api/post/create`;
   const holder =
     "Create beautiful content with markdown. Add math if you like $y=2x^2 + log_{2}10 + e^{0.5}$";
   const data = {

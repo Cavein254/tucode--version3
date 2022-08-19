@@ -1,10 +1,10 @@
+import { signIn } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
 import { AiFillTrophy } from "react-icons/ai";
 
 function Header() {
   return (
-    <div className="overflow-x-hidden max-w-full flex flex-row justify-between items-center bg-yellow-600 border-4 border-b-gray-800 p-0 m-0">
+    <div className="overflow-x-hidden max-w-full flex flex-row justify-between items-center bg-yellow-600 p-0 m-0 ">
       {/* logo area */}
       <div className="p-2 flex flex-row text-center justify-center items-center hover:cursor-pointer">
         <div className="">
@@ -37,6 +37,26 @@ function Header() {
             placeholder="Search"
             className="max-w-full text-gray-700 text-lg mx-4 my-2 px-2 py-1 rounded-md active:ring-0 border-none font-semibold"
           />
+        </div>
+      </div>
+      {/* log in area */}
+      <div>
+        <div>
+          <div> Image </div>
+          <div> Username </div>
+        </div>
+        <div>
+          <div>
+            <button
+              onClick={() =>
+                signIn("github", {
+                  callbackUrl: process.env.NEXTAUTH_URL,
+                })
+              }
+            >
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   AiFillAudio,
   AiFillCode,
@@ -45,7 +45,11 @@ const ListItem = ({ data }) => {
 
   return (
     <>
-      <Link href={`/post/${slug}`}>
+      <Link
+        href={{
+          pathname: `/post/${slug}`,
+        }}
+      >
         <div className="mb-10 hover:cursor-pointer">
           <div className="w-full rounded-sm border-2 border-gray-300 bg-gray-200 px-4 shadow-lg">
             {/* List card header */}
@@ -67,8 +71,10 @@ const ListItem = ({ data }) => {
               </h1>
             </div>
             {/* List card Description */}
-            <div>
-              <h4 className="py-1 font-semibold text-gray-600">{body}</h4>
+            <div className="overflow-hidden">
+              <h4 className="py-1 font-semibold text-gray-600 w-[fit-content]">
+                {body}
+              </h4>
             </div>
             {/* List footer  */}
             <div className="-mx-4 border-t-2 border-gray-300"></div>

@@ -28,7 +28,7 @@ function Editor({ data }) {
       tags,
       body: job,
       published: false,
-      authorId: "cl5hboenx00165wdu5vh6b1oi",
+      authorId: "auto",
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
@@ -45,7 +45,7 @@ function Editor({ data }) {
       title,
       body: job,
       published: true,
-      authorId: "cl5hboenx00165wdu5vh6b1oi",
+      authorId: "auto",
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
