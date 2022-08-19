@@ -5,17 +5,19 @@ export const fetcher = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  console.log(data);
   try {
+    console.log("on fetcher");
     fetch(url, {
       method: data ? "POST" : "GET",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
       body: JSON.stringify(data),
     }).then((res) => {
-      console.log("fetcher response");
-      return res.json();
+      res.json();
     });
   } catch (error) {
     console.log("oncatch");

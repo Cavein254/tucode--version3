@@ -18,7 +18,7 @@ const Home: NextPage = ({ users }) => {
 
   async function create(data: FormData) {
     try {
-      fetch(`http://localhost:3000/post/create`, {
+      fetch(`http://localhost:3000/api/post/create`, {
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",

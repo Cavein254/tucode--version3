@@ -8,7 +8,7 @@ function Answer() {
     commentBox: true,
     wrapper: "min-w-max w-full h-full border-none pb-5",
     textArea:
-      "sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0",
+      "sm:text-md  block h-full w-full border-none text-sm text-gray-600 focus:border-none focus:ring-0 shadow-xl",
   };
   return <MinimalEditor data={data} />;
 }

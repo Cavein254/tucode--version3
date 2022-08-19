@@ -22,7 +22,6 @@ function Editor({ data }) {
   const [title, setTitle] = useState("");
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(data.re_route);
     const postData = {
       title,
       tags,
@@ -31,8 +30,9 @@ function Editor({ data }) {
       authorId: "auto",
       slug: slugGenerator(title),
     };
+
     fetcher(data.link, postData);
-    // Router.push("/");
+    Router.push(data.re_route);
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -41,7 +41,6 @@ function Editor({ data }) {
   };
   const publishData = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("published btn");
     const postData = {
       title,
       body: job,
