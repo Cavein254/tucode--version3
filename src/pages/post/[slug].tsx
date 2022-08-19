@@ -1,20 +1,21 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import Answer from "../../components/answer/Answer";
 import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllPosts } from "../api/posts";
 
 const SnippetScreen = ({ specificPost, hasError }) => {
-  console.log(specificPost);
   const router = useRouter();
   return (
     <div className="mt-6 p-4 flex flex-col justify-center align-middle">
       <ListItemBody data={specificPost} />
       <div className="flex flex-wrap-reverse justify-end">
-        <div>comment Body</div>
+        <div>comment Body and Live</div>
         <div>
           <div className="">ThumbsUp</div>
           <div className="">Applicability</div>
         </div>
+        <Answer />
       </div>
     </div>
   );
