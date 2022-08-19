@@ -6,8 +6,6 @@ export const fetcher = async (
   res: NextApiResponse
 ) => {
   try {
-    console.log("from fetcher");
-    console.log(data);
     fetch(url, {
       method: data ? "POST" : "GET",
       credentials: "include",
@@ -16,9 +14,11 @@ export const fetcher = async (
       },
       body: JSON.stringify(data),
     }).then((res) => {
+      console.log("fetcher response");
       return res.json();
     });
   } catch (error) {
+    console.log("oncatch");
     res.json({
       status: "failed",
       error,

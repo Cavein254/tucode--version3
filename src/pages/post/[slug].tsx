@@ -1,24 +1,24 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllPosts } from "../api/posts";
 
 const PostScreen = ({ specificPost, hasError }) => {
-  const data = JSON.stringify(specificPost);
-  const allSlugs = JSON.parse(data);
+  console.log(specificPost);
   const router = useRouter();
   return (
     <div>
-      <h1>{allSlugs.title}</h1>
+      <ListItemBody data={specificPost} />
     </div>
   );
 };
 export default PostScreen;
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context.params?.slug;
+  const pslug = context.params?.slug;
 
   const posts = await GetAllPosts();
-  const findSlug = posts.find((post) => slug === post.slug);
+  const findSlug = posts?.find((post) => pslug === post.slug);
 
   if (!findSlug) {
     return {
@@ -27,10 +27,37 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     };
   }
+  //Todo: Add dates to the object. Problem passing Json
+  const {
+    post_id,
+    title,
+    body,
+    slug,
+    levels,
+    likes,
+    tags,
+    published,
+    createdAt,
+    updatedAt,
+    authorId,
+  } = findSlug;
+  const foundSlug = {
+    post_id,
+    title,
+    body,
+    slug,
+    levels,
+    likes,
+    tags,
+    published,
+    createdAt: JSON.stringify(createdAt),
+    updatedAt: JSON.stringify(updatedAt),
+    authorId,
+  };
 
   return {
     props: {
-      specificPost: findSlug,
+      specificPost: foundSlug,
     },
   };
 };
@@ -39,7 +66,6 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   const pathsWithParams = posts?.map((post) => ({
     params: { slug: post.slug },
   }));
-
   return {
     paths: pathsWithParams,
     fallback: true,

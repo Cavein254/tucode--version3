@@ -41,6 +41,7 @@ function Editor({ data }) {
   };
   const publishData = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    console.log("published btn");
     const postData = {
       title,
       body: job,

@@ -27,6 +27,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { title, body, authorId, published, slug } = req.body;
+  console.log('][[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]')
   console.log(req.body);
 
   try {
