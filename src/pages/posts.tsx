@@ -6,6 +6,7 @@ function posts({ posts }) {
   const specificData = {
     btn_title: "Create a Post",
     url: "/createpost/",
+    path: "/post/",
   };
 
   return (

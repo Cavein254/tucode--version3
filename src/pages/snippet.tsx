@@ -6,11 +6,15 @@ function snippet({ snippets }) {
   const specificData = {
     btn_title: "Create a Snippet",
     url: "/createsnippet/",
-    path: "/snippets/",
+    path: "/snippet/",
   };
   return (
     <div>
-      <List data={snippets} specificData={specificData} />
+      <List
+        data={snippets}
+        specificData={specificData}
+        itemPath={specificData.path}
+      />
     </div>
   );
 }

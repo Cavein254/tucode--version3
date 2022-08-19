@@ -11,3 +11,15 @@ export const GetAllPosts = async () => {
     console.log(error);
   }
 };
+
+export const GetAllSnippets = async () => {
+  try {
+    const data = await prisma.snippet.findMany();
+    const allSnippet = JSON.stringify(data);
+    const snippet = JSON.parse(allSnippet);
+
+    return snippet;
+  } catch (error) {
+    console.log(error);
+  }
+};

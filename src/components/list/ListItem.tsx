@@ -9,9 +9,7 @@ import {
 import Moment from "react-moment";
 
 const ListItem = ({ data, itemPath }) => {
-  console.log('"""""""""""""""""snippet"""""""""""""""""');
-  console.log(data);
-  console.log('"""""""""""""""""snippet"""""""""""""""""');
+  console.log(itemPath);
 
   const [color, setColor] = useState("");
   var myColor = "bg-green-400";

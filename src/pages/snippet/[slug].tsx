@@ -1,21 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import ListItemBody from "../../components/list/ListItemBody";
-import { GetAllPosts } from "../api/posts";
+import { GetAllSnippets } from "../api/posts";
 
 const SnippetScreen = ({ specificPost, hasError }) => {
   console.log(specificPost);
   const router = useRouter();
   return (
-    <div className="mt-6 p-4 flex flex-col justify-center align-middle">
+    <div>
       <ListItemBody data={specificPost} />
-      <div className="flex flex-wrap-reverse justify-end">
-        <div>comment Body</div>
-        <div>
-          <div className="">ThumbsUp</div>
-          <div className="">Applicability</div>
-        </div>
-      </div>
     </div>
   );
 };
@@ -24,8 +17,8 @@ export default SnippetScreen;
 export const getStaticProps: GetStaticProps = async (context) => {
   const pslug = context.params?.slug;
 
-  const posts = await GetAllPosts();
-  const findSlug = posts?.find((post) => pslug === post.slug);
+  const snippets = await GetAllSnippets();
+  const findSlug = snippets?.find((snippet) => pslug === snippet.slug);
 
   if (!findSlug) {
     return {
@@ -36,30 +29,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   //Todo: Add dates to the object. Problem passing Json
   const {
-    post_id,
+    snippet_id,
     title,
     body,
     slug,
-    levels,
-    types,
-    views,
-    likes,
-    tags,
     published,
     createdAt,
     updatedAt,
     authorId,
   } = findSlug;
   const foundSlug = {
-    post_id,
+    snippet_id,
     title,
     body,
     slug,
-    levels,
-    types,
-    views,
-    likes,
-    tags,
     published,
     createdAt: JSON.stringify(createdAt),
     updatedAt: JSON.stringify(updatedAt),
@@ -73,9 +56,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const posts = await GetAllPosts();
-  const pathsWithParams = posts?.map((post) => ({
-    params: { slug: post.slug },
+  const snippets = await GetAllSnippets();
+  const pathsWithParams = snippets?.map((snippet) => ({
+    params: { slug: snippet.slug },
   }));
   return {
     paths: pathsWithParams,

@@ -7,6 +7,7 @@ import {
   AiFillGooglePlusCircle,
 } from "react-icons/ai";
 import Moment from "react-moment";
+import Viewer from "../editor/Viewer";
 
 const ListItem = ({ data }) => {
   const [color, setColor] = useState("");
@@ -73,7 +74,7 @@ const ListItem = ({ data }) => {
             {/* List card Description */}
             <div className="overflow-hidden">
               <h4 className="py-1 font-semibold text-gray-600 w-[fit-content]">
-                {body}
+                <Viewer data={body} />
               </h4>
             </div>
             {/* List footer  */}
@@ -115,11 +116,11 @@ const ListItem = ({ data }) => {
             className={`flex justify-between text-gray-900 font-medium text-sm ${myColor}`}
           >
             <div>
-              Created:<Moment fromNow>{createdAt}</Moment>{" "}
+              Created:<Moment fromNow>{new Date(createdAt)}</Moment>{" "}
             </div>
             <div>Level: {levels}</div>
             <div>
-              Updated: <Moment fromNow>{updatedAt}</Moment>
+              Updated: <Moment fromNow>{new Date(updatedAt)}</Moment>
             </div>
           </div>
         </div>
