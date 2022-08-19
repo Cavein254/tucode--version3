@@ -48,6 +48,7 @@ model User {
   comments      Comment[]
   snippets      Snippet[]
   posts         Post[]
+  message Message[]  
 }
 
 model VerificationToken {
@@ -114,7 +115,7 @@ model Snippet {
 }
 
 model Comment {
-  id        String    @id @default(cuid())
+  comment_id        String    @id @default(cuid())
   body      String    @db.VarChar(300)
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
@@ -122,4 +123,16 @@ model Comment {
   author    User      @relation(fields: [authorId], references: [user_id])
   authorId  String
   postId    String
+}
+
+model Message {
+  message_id        String    @id @default(cuid())
+  body      String    @db.VarChar(300)
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
+  message      User      @relation(fields: [messageId], references: [user_id])
+  messageId    String
+  ReceiverId  String
+  //Todo create a foreignkey weaklink to user as the receiver
+  //is also of type user
 }
