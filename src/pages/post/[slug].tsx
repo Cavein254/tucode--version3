@@ -1,21 +1,31 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import Answer from "../../components/answer/Answer";
 import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllPosts } from "../api/posts";
 
 const SnippetScreen = ({ specificPost, hasError }) => {
+  const [show, setShow] = useState(false);
   const router = useRouter();
   return (
     <div className="mt-6 p-4 flex flex-col justify-center align-middle">
-      <ListItemBody data={specificPost} />
+      <div>
+        <ListItemBody data={specificPost} />
+        <button
+          onClick={() => setShow(!show)}
+          className="bg-purple-600 px-4 py-2 text-sm text-white hover:text-purple-600 hover:bg-white"
+        >
+          Answer
+        </button>
+      </div>
       <div className="flex flex-wrap-reverse justify-end">
         <div>comment Body and Live</div>
         <div>
           <div className="">ThumbsUp</div>
           <div className="">Applicability</div>
         </div>
-        <Answer />
+        {show && <Answer />}
       </div>
     </div>
   );
