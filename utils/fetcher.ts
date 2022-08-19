@@ -44,5 +44,5 @@ export const slugGenerator = (title) => {
     newDay.getUTCMinutes() +
     "-" +
     newDay.getMilliseconds();
-  return slug;
+  return slug.toLocaleLowerCase;
 };
