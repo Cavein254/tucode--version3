@@ -17,7 +17,7 @@ interface FormData {
 // import Logo from '../../imgs/head.jpg';
 function MinimalEditor({ data }) {
   const Router = useRouter();
-  const [job, setJob] = useState("cos_3 * sin 30");
+  const [job, setJob] = useState("");
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
   const saveData = (e: React.SyntheticEvent) => {
@@ -54,39 +54,41 @@ function MinimalEditor({ data }) {
   };
 
   return (
-    <div className="w-full border-none pb-5">
+    <div className={data.wrapper}>
       {/* context textbox */}
       <textarea
         onChange={(e) => setJob(e.target.value)}
-        placeholder="Besties"
-        rows={10}
-        className="sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0"
+        placeholder={data.placeholder}
+        rows={data.rows}
+        className={data.textArea}
         value={job}
       />
 
-      <div className="flex justify-between">
-        <div className="m-2 cursor-pointer justify-center rounded-lg bg-red-500 px-2 py-1 align-middle text-white hover:bg-red-900">
-          <a href="#" onClick={clearData}>
-            Clear
-          </a>
-        </div>
-        <div className="flex">
-          <div className="m-2 cursor-pointer justify-center rounded-lg bg-gray-500 px-2 py-1 align-middle text-white hover:bg-black">
-            <a href="#" onClick={saveData}>
-              Save
+      {data.commentBox ? (
+        <div className="flex justify-between">
+          <div className="m-2 cursor-pointer  rounded-lg bg-red-500 px-2 py-1 align-middle text-white hover:bg-red-900">
+            <a href="#" onClick={clearData}>
+              Clear
             </a>
           </div>
-          <div className="m-2 cursor-pointer justify-center rounded-lg bg-green-500 px-2 py-1 align-middle text-white hover:bg-green-900">
-            <a href="#" onClick={publishData}>
-              Publish
-            </a>
+          <div className="flex">
+            <div className="m-2 cursor-pointer rounded-lg bg-gray-500 px-2 py-1 align-middle text-white hover:bg-black">
+              <a href="#" onClick={saveData}>
+                Save
+              </a>
+            </div>
+            <div className="m-2 cursor-pointer  rounded-lg bg-green-500 px-2 py-1 align-middle text-white hover:bg-green-900">
+              <a href="#" onClick={publishData}>
+                Publish
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="">
+      ) : null}
+      <div>
         <div className="">
           <ReactMarkdown
-            children={job}
+            children={data.btn ? job : null}
             remarkPlugins={[remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{
@@ -103,7 +105,7 @@ function MinimalEditor({ data }) {
                 ) : (
                   <code className="border-none">
                     <p
-                      className="overflow-y-scroll text-base font-thin text-red-500"
+                      className="overflow-y-scroll text-base font-thin"
                       {...props}
                     >
                       {children}

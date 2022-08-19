@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Answer from "../../components/answer/Answer";
+import Comment from "../../components/comments/Comment";
 import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllPosts } from "../api/posts";
 
@@ -20,12 +21,7 @@ const SnippetScreen = ({ specificPost, hasError }) => {
         </button>
       </div>
       <div className="flex flex-wrap-reverse justify-end">
-        <div>comment Body and Live</div>
-        <div>
-          <div className="">ThumbsUp</div>
-          <div className="">Applicability</div>
-        </div>
-        {show && <Answer />}
+        {show ? <Answer /> : <Comment />}
       </div>
     </div>
   );
