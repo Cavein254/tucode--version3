@@ -6,6 +6,7 @@ function snippet({ snippets }) {
   const specificData = {
     btn_title: "Create a Snippet",
     url: "/createsnippet/",
+    path: "/snippets/",
   };
   return (
     <div>

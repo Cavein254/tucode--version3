@@ -8,7 +8,11 @@ import {
 } from "react-icons/ai";
 import Moment from "react-moment";
 
-const ListItem = ({ data }) => {
+const ListItem = ({ data, itemPath }) => {
+  console.log('"""""""""""""""""snippet"""""""""""""""""');
+  console.log(data);
+  console.log('"""""""""""""""""snippet"""""""""""""""""');
+
   const [color, setColor] = useState("");
   var myColor = "bg-green-400";
   const {
@@ -47,7 +51,7 @@ const ListItem = ({ data }) => {
     <>
       <Link
         href={{
-          pathname: `/post/${slug}`,
+          pathname: `${itemPath}${slug}`,
         }}
       >
         <div className="mb-10 hover:cursor-pointer">

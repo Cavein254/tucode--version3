@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import ListItem from "./ListItem";
 
 const List = ({ data, specificData }) => {
@@ -14,7 +13,7 @@ const List = ({ data, specificData }) => {
       </div>
       <div className="mx-4 mt-10">
         {data.map((post) => (
-          <ListItem data={post} key={post.slug} />
+          <ListItem data={post} key={post.slug} itemPath={specificData.path} />
         ))}
       </div>
     </div>
