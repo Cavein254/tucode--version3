@@ -7,7 +7,7 @@ const SnippetScreen = ({ specificPost, hasError }) => {
   console.log(specificPost);
   const router = useRouter();
   return (
-    <div>
+    <div className="mt-6 p-4 flex flex-col justify-center align-middle">
       <ListItemBody data={specificPost} />
     </div>
   );

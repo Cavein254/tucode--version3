@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import prisma from "../../lib/prisma";
 import List from "../components/list/List";
 
-function snippet({ snippets }) {
+function snippets({ snippets }) {
   const specificData = {
     btn_title: "Create a Snippet",
     url: "/createsnippet/",
@@ -19,12 +19,13 @@ function snippet({ snippets }) {
   );
 }
 
-export default snippet;
+export default snippets;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await prisma.snippet.findMany();
   const allSnippets = JSON.stringify(data);
   const snippets = JSON.parse(allSnippets);
+  console.log(snippets)
 
   return {
     props: {

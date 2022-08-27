@@ -39,16 +39,18 @@ function Editor({ data }) {
     setJob("");
     setTitle("");
   };
-  const publishData = (e: React.SyntheticEvent) => {
+  const publishData =  (e: React.SyntheticEvent) => {
     e.preventDefault();
     const postData = {
       title,
       body: job,
       published: true,
       authorId: "auto",
-      slug: slugGenerator(title),
+      slug:slugGenerator(title)
     };
     fetcher(data.link, postData);
+    console.log('on fetcher below')
+    console.log(postData)
     Router.push(data.re_route);
   };
 

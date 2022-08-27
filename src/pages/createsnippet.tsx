@@ -7,7 +7,7 @@ function createsnippet() {
   const data = {
     holder,
     link,
-    re_route: "/snippet",
+    re_route: "/snippets/",
   };
   return (
     <div>
