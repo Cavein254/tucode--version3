@@ -12,8 +12,12 @@ function Header() {
           <div className="flex flex-col text-white pl-2 pt-2">
             <div>
               <div className="flex flex-row justify-center items-center">
+                <Link href="/">
                 <FaGuitar size={45} />
-                <div className=" text-2xl">TUCODE</div>
+                </Link>
+                
+                <div className=" text-2xl"><Link href='/'>TUCODE</Link></div>
+                
               </div>
               <div>
                 <div className=" text-sm">code.commit.deploy</div>
@@ -45,16 +49,16 @@ function Header() {
            
           </div>
           {/* login */}
-          <div className="flex flex-row justify-end">
+          {/*show only if user is not logged in */}
+          <div className="flex flex-row justify-end hidden md:visible lg:visible">
             <div className=" pr-2 mr-4 text-gray-400 justify-end">
               <div className="">Create My Account / </div>
               <div className="">Login</div>
             </div>
           </div>
-          <div className="flex flex-row">
-            <div className="">Icon</div>
-            <div className="">=</div>
-          </div>
+          <div className="flex flex-row justify-end items-center text-white">
+                <FaGuitar size={45} />
+            </div>
         </div>
       </div>
     </div>

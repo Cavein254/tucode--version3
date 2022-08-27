@@ -23,3 +23,14 @@ export const GetAllSnippets = async () => {
     console.log(error);
   }
 };
+export const GetAllAnswers = async () => {
+  try {
+    const data = await prisma.answer.findMany();
+    const allSnippet = JSON.stringify(data);
+    const snippet = JSON.parse(allSnippet);
+
+    return snippet;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -49,6 +49,7 @@ model User {
   snippets      Snippet[]
   posts         Post[]
   message Message[]  
+    answers Answer[]
 }
 
 model VerificationToken {
@@ -86,6 +87,7 @@ model Post {
   author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
   authorId  String?
   comments  Comment[]
+    answers Answer[]
 }
 
 enum type {
@@ -99,6 +101,18 @@ enum level {
   Advanced
   Expert
   Master
+}
+
+model Answer {
+  answer_id String    @id @default(cuid())
+  body       String?   
+  likes     String?
+  createdAt  DateTime? @default(now()) @map(name: "created_at")
+  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
+  post      Post      @relation(fields: [postId], references: [post_id])
+  postId    String
 }
 
 model Snippet {

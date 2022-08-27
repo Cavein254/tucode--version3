@@ -49,6 +49,7 @@ model User {
   snippets      Snippet[]
   posts         Post[]
   message Message[]  
+  answers Answer[]
 }
 
 model VerificationToken {
@@ -84,9 +85,19 @@ model Post {
   author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
   authorId  String?
   comments  Comment[]
+  answers Answer[]
 }
 
-
+model Answer {
+  answer_id String    @id @default(cuid())
+  body       String?   
+  createdAt  DateTime? @default(now()) @map(name: "created_at")
+  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
+  post      Post      @relation(fields: [postId], references: [post_id])
+  postId    String
+}
 
 model Snippet {
   snippet_id String    @id @default(cuid())
@@ -99,6 +110,7 @@ model Snippet {
   published  Boolean?  @default(false)
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
+  
 }
 
 model Comment {
