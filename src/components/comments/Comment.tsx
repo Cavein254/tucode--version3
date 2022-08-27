@@ -1,9 +1,9 @@
 import CommentList from "./CommentList";
 
-function Comment() {
+function Comment({postId, slug}) {
   return (
     <div>
-      <CommentList />
+      <CommentList postId={postId} slug={slug}/>
     </div>
   );
 }

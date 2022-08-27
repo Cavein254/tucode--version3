@@ -6,9 +6,35 @@ import Comment from "../../components/comments/Comment";
 import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllPosts } from "../api/posts";
 
+interface SpecificPost {
+    post_id:String,
+    title:String ,
+    body:String,
+    slug:String,
+    levels:String,
+    types:String,
+    views:String,
+    likes:String,
+    tags:String,
+    published:String,
+    createdAt:String,
+    updatedAt:String,
+    authorId:String,
+}
+
 const SnippetScreen = ({ specificPost, hasError }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
+  let postId;
+  let slug;
+  if (specificPost) {
+    postId = specificPost.post_id
+    slug = specificPost.slug
+  }
+  else {
+    postId = null
+    slug = null
+  }
   return (
     <div className="mt-6 p-4 flex flex-col justify-center align-middle">
       <div>
@@ -21,7 +47,7 @@ const SnippetScreen = ({ specificPost, hasError }) => {
         </button>
       </div>
       <div className="flex flex-wrap-reverse justify-end">
-        {show ? <Answer /> : <Comment />}
+        {show ? <Answer  postId={postId} slug={slug}/> : <Comment postId={postId} slug={slug}/>}
       </div>
     </div>
   );

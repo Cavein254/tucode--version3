@@ -1,7 +1,10 @@
 import MinimalEditor from "../editor/MinimalEditor";
 
-function Answer() {
+function Answer({postId,slug}) {
   const data = {
+    postId,
+    link:"http://localhost:3000/api/answer/create",
+    re_route:'answers',
     rows: 10,
     btn: true,
     placeholder: "Write your Answer",

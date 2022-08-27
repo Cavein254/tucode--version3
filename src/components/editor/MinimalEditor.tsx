@@ -28,10 +28,13 @@ function MinimalEditor({ data }) {
       body: job,
       published: false,
       authorId: "auto",
+      postId:data.postId,
       slug: slugGenerator(title),
     };
+    console.log('on minimal editor')
+    console.log(postData)
     fetcher(data.link, postData);
-    // Router.push("/");
+    Router.push("/");
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -45,10 +48,13 @@ function MinimalEditor({ data }) {
       body: job,
       published: true,
       authorId: "auto",
+      postId:data.postId,
       slug: slugGenerator(title),
     };
+    console.log('on minimal editor')
+    console.log(postData)
     fetcher(data.link, postData);
-    Router.push(data.re_route);
+    Router.back()
   };
 
   return (
