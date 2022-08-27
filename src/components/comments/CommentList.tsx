@@ -1,7 +1,8 @@
 import MinimalEditor from "../editor/MinimalEditor";
 
-function CommentList() {
+function CommentList({postId}) {
   const data = {
+    postId,
     rows: 2,
     link:'http://localhost:3000/api/comment/create',
     btn: false,

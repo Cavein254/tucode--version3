@@ -23,7 +23,6 @@ export default async function handler(
         payload: req.body,
       });
     } catch (error) {
-      console.log(res)
       res.json({
         status: "Failed to create post",
         error,
