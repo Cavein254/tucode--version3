@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import ListItemBody from "../../components/list/ListItemBody";
-import { GetAllSnippets } from "../api/posts";
+import { GetAllSnippets } from "../api/apiActions";
 
 const SnippetScreen = ({ specificPost, hasError }) => {
   console.log(specificPost);

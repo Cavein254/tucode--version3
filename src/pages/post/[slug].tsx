@@ -2,9 +2,11 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Answer from "../../components/answer/Answer";
+import AnswerDisplay from "../../components/answer/AnswerDisplay";
 import Comment from "../../components/comments/Comment";
+import CommentDisplay from "../../components/comments/CommentDisplay";
 import ListItemBody from "../../components/list/ListItemBody";
-import { GetAllPosts } from "../api/posts";
+import { GetAllPosts } from "../api/apiActions";
 
 interface SpecificPost {
     post_id:String,
@@ -48,6 +50,10 @@ const SnippetScreen = ({ specificPost, hasError }) => {
       </div>
       <div className="flex flex-wrap-reverse justify-end">
         {show ? <Answer  postId={postId} slug={slug}/> : <Comment postId={postId} slug={slug}/>}
+      </div>
+      <div>
+        <AnswerDisplay />
+        <CommentDisplay />
       </div>
     </div>
   );

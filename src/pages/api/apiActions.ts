@@ -26,10 +26,22 @@ export const GetAllSnippets = async () => {
 export const GetAllAnswers = async () => {
   try {
     const data = await prisma.answer.findMany();
-    const allSnippet = JSON.stringify(data);
-    const snippet = JSON.parse(allSnippet);
+    const allAnswers = JSON.stringify(data);
+    const answers = JSON.parse(allAnswers);
 
-    return snippet;
+    return answers;
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const GetAllComments = async () => {
+  console.log('------------all comments get fun-------------')
+  try {
+    const data = await prisma.comment.findMany();
+    const allComments = JSON.stringify(data);
+    const comments = JSON.parse(allComments);
+
+    return comments;
   } catch (error) {
     console.log(error);
   }
