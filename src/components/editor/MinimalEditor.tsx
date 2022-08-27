@@ -31,8 +31,6 @@ function MinimalEditor({ data }) {
       postId:data.postId,
       slug: slugGenerator(title),
     };
-    console.log('on minimal editor')
-    console.log(postData)
     fetcher(data.link, postData);
     Router.push("/");
   };
@@ -119,6 +117,9 @@ function MinimalEditor({ data }) {
               },
             }}
           />
+        </div>
+        <div>
+          <button className="bg-gray-300 px-4 py-2 rounded-sm hover:bg-green-200" onClick={publishData}>submit</button>
         </div>
       </div>
     </div>

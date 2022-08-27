@@ -49,6 +49,7 @@ model User {
   snippets      Snippet[]
   posts         Post[]
   message Message[]  
+  answers Answer[]
 }
 
 model VerificationToken {
@@ -92,6 +93,8 @@ model Answer {
   body       String?   
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
   post      Post      @relation(fields: [postId], references: [post_id])
   postId    String
 }

@@ -32,7 +32,7 @@ function Editor({ data }) {
     };
 
     fetcher(data.link, postData);
-    Router.push(data.re_route);
+    Router.back();
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -49,7 +49,7 @@ function Editor({ data }) {
       slug:slugGenerator(title)
     };
     fetcher(data.link, postData);
-    Router.push(data.re_route);
+    Router.back();
   };
 
   //Todo Add rehype-emoji Plugin

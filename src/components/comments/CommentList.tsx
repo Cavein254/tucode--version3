@@ -3,6 +3,7 @@ import MinimalEditor from "../editor/MinimalEditor";
 function CommentList() {
   const data = {
     rows: 2,
+    link:'http://localhost:3000/api/comment/create',
     btn: false,
     placeholder: "Add a comment ...",
     commentBox: false,

@@ -9,7 +9,7 @@ export default async function handler(
     const { body, authorId, postId } = req.body;
     console.log("on create api")
     try {
-      await prisma.answer.create({
+      await prisma.comment.create({
         data: {
           body,
           authorId,
@@ -19,13 +19,12 @@ export default async function handler(
 
       res.status(200).json({
         status: "success",
-        msg: "Post created successfully",
+        msg: "comment created successfully",
         payload: req.body,
       });
     } catch (error) {
-      console.log(res)
       res.json({
-        status: "Failed to create post",
+        status: "Failed to create comment",
         error,
         payload: req.body,
       });
