@@ -22,3 +22,8 @@ body
 timestamp
 sender
 receiver
+
+
+
+********
+1. Add levels & types in /posts/[slug]

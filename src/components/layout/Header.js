@@ -13,11 +13,10 @@ function Header() {
             <div>
               <div className="flex flex-row justify-center items-center">
                 <FaGuitar size={45} />
-                <div className=" text-2xl">PATE</div>
+                <div className=" text-2xl">TUCODE</div>
               </div>
               <div>
-                <div className=" text-sm">International</div>
-                <div className="text-xs">+253 444 333</div>
+                <div className=" text-sm">code.commit.deploy</div>
               </div>
             </div>
           </div>
@@ -26,33 +25,28 @@ function Header() {
           {/* Todo: Make it hidden in small devices */}
           <div className="text-gray-400 font-xs mt-8 hidden md:flex">
             <div className="pr-2">
-              <Link href="/">TICKETS</Link>
+              <Link href="/posts/">POSTS</Link>
             </div>
             <div className="pr-2">
-              <Link href="/">PREVIOUS LINEUPS</Link>
+              <Link href="/snippets/">SNIPPETS</Link>
             </div>
             <div className="pr-2">
-              <Link href="/">MERCH</Link>
+              <Link href="/questions/">QUESTIONS</Link>
             </div>
             <div className="pr-2">
-              <Link href="/">SUSTAINABILITY</Link>
+              <Link href="/about/">ABOUT US</Link>
             </div>
             <div className="pr-2">
-              <Link href="/">MEDIA</Link>
+              <Link href="/help/">HELP</Link>
             </div>
             <div className="pr-2">
-              <Link href="/">HELP</Link>
+              <Link href="/contact/">CONTACT US</Link>
             </div>
-            <div className="pr-2">
-              <Link href="/">MORE</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/">WORLDWIDE</Link>
-            </div>
+           
           </div>
           {/* login */}
-          <div className="flex flex-row">
-            <div className=" pr-2 mr-4 text-gray-400">
+          <div className="flex flex-row justify-end">
+            <div className=" pr-2 mr-4 text-gray-400 justify-end">
               <div className="">Create My Account / </div>
               <div className="">Login</div>
             </div>

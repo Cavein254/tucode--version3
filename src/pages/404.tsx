@@ -1,7 +1,6 @@
-import React from "react";
 
 const NotFoundPage = () => {
-  return <div>NotFoundPage</div>;
+  return <div>Welcome to unforseen page</div>;
 };
 
 export default NotFoundPage;

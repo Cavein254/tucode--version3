@@ -26,10 +26,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(
-    "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
-  );
-  console.log(req);
+  
   const { title, body, authorId, published, slug } = req.body;
 
   try {
