@@ -8,8 +8,6 @@ export default async function handler(
     
     const { title, body, authorId, published, slug } = req.body;
 
-    console.log("in post create")
-    console.log(req.body)
     try {
       await prisma.snippet.create({
         data: {

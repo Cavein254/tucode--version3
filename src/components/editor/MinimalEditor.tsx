@@ -22,7 +22,6 @@ function MinimalEditor({ data }) {
   const [title, setTitle] = useState("");
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log(data.re_route);
     const postData = {
       title,
       tags,
@@ -41,7 +40,6 @@ function MinimalEditor({ data }) {
   };
   const publishData = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    console.log("published btn");
     const postData = {
       title,
       body: job,

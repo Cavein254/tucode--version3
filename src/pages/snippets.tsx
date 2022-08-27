@@ -25,7 +25,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const data = await prisma.snippet.findMany();
   const allSnippets = JSON.stringify(data);
   const snippets = JSON.parse(allSnippets);
-  console.log(snippets)
 
   return {
     props: {

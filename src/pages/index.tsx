@@ -14,7 +14,6 @@ interface FormData {
 }
 const Home: NextPage = ({ users }) => {
   const [form, setForm] = React.useState<FormData>({ username: "" });
-  console.log(users);
 
   async function create(data: FormData) {
     try {

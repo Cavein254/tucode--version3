@@ -49,8 +49,6 @@ function Editor({ data }) {
       slug:slugGenerator(title)
     };
     fetcher(data.link, postData);
-    console.log('on fetcher below')
-    console.log(postData)
     Router.push(data.re_route);
   };
 
