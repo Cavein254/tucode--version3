@@ -6,7 +6,7 @@ import AnswerDisplay from "../../components/answer/AnswerDisplay";
 import Comment from "../../components/comments/Comment";
 import CommentDisplay from "../../components/comments/CommentDisplay";
 import ListItemBody from "../../components/list/ListItemBody";
-import { GetAllPosts } from "../api/apiActions";
+import { GetAllPosts, GetSingleAnswer, GetSingleComment } from "../api/apiActions";
 
 interface SpecificPost {
     post_id:String,
@@ -24,7 +24,7 @@ interface SpecificPost {
     authorId:String,
 }
 
-const SnippetScreen = ({ specificPost, hasError }) => {
+const PostScreen = ({ specificPost, hasError, comments,answers }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
   let postId;
@@ -52,20 +52,23 @@ const SnippetScreen = ({ specificPost, hasError }) => {
         {show ? <Answer  postId={postId} slug={slug}/> : <Comment postId={postId} slug={slug}/>}
       </div>
       <div>
-        <AnswerDisplay />
-        <CommentDisplay />
+        <AnswerDisplay answers={answers}/>
+        <CommentDisplay comments={comments}/>
       </div>
     </div>
   );
 };
-export default SnippetScreen;
+export default PostScreen;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const pslug = context.params?.slug;
 
   const posts = await GetAllPosts();
   const findSlug = posts?.find((post) => pslug === post.slug);
+  const comments = await GetSingleComment(findSlug.post_id)
+  const answers = await GetSingleAnswer(findSlug.post_id)
 
+  
   if (!findSlug) {
     return {
       props: {
@@ -106,6 +109,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       specificPost: foundSlug,
+      comments,
+      answers
     },
   };
 };

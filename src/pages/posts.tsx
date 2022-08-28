@@ -3,6 +3,7 @@ import prisma from "../../lib/prisma";
 import List from "../components/list/List";
 
 function posts({ posts }) {
+  
   const specificData = {
     btn_title: "Create a Post",
     url: "/createpost/",
@@ -19,8 +20,8 @@ function posts({ posts }) {
 export default posts;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await prisma.post.findMany();
-  const allPosts = JSON.stringify(data);
+  const postData = await prisma.post.findMany();
+  const allPosts = JSON.stringify(postData);
   const posts = JSON.parse(allPosts);
 
   return {

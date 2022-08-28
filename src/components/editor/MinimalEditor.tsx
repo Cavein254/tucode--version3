@@ -49,8 +49,6 @@ function MinimalEditor({ data }) {
       postId:data.postId,
       slug: slugGenerator(title),
     };
-    console.log('on minimal editor')
-    console.log(postData)
     fetcher(data.link, postData);
     Router.back()
   };

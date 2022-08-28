@@ -35,7 +35,6 @@ export const GetAllAnswers = async () => {
   }
 };
 export const GetAllComments = async () => {
-  console.log('------------all comments get fun-------------')
   try {
     const data = await prisma.comment.findMany();
     const allComments = JSON.stringify(data);
@@ -46,3 +45,34 @@ export const GetAllComments = async () => {
     console.log(error);
   }
 };
+
+export const GetSingleAnswer = async (id) => {
+  try {
+    const data = await prisma.answer.findMany({
+      where:{
+        postId:id
+      }
+    })
+    const allAnswers = JSON.stringify(data);
+    const answers = JSON.parse(allAnswers);
+    return answers
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const GetSingleComment = async (id) => {
+  try {
+    const data = await prisma.comment.findMany({
+      where:{
+        postId:id
+      }
+    })
+    const allComments = JSON.stringify(data);
+    const comments = JSON.parse(allComments);
+
+    return comments
+  } catch (error) {
+    console.log(error)
+  }
+}

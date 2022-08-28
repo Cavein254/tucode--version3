@@ -7,7 +7,6 @@ export default async function handler(
   ) {
     
     const { body, authorId, postId } = req.body;
-    console.log("on create api")
     try {
       await prisma.answer.create({
         data: {

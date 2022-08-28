@@ -1,9 +1,5 @@
-import { GetStaticProps } from "next";
-import { GetAllComments } from "../../pages/api/apiActions";
 
-const CommentDisplay = ({comments}) => {
-    console.log("comments")
-    console.log(comments)
+const CommentDisplay = ({posts}) => {
     return (
         <div>All comments here</div>
     )
@@ -11,14 +7,3 @@ const CommentDisplay = ({comments}) => {
 
 export default CommentDisplay;
 
-export const getStaticProps: GetStaticProps = async () => {
-    const comments = GetAllComments()
-    console.log('---------------coments--------------')
-    console.log(comments)
-  
-    return {
-      props: {
-        comments,
-      },
-    };
-  };
