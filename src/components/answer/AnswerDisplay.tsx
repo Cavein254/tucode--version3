@@ -1,24 +1,30 @@
-import { GetServerSideProps } from "next";
-import { GetAllAnswers } from "../../pages/api/apiActions";
-
+import Moment from "react-moment";
+import Viewer from "../editor/Viewer";
 const AnswerDisplay = ({answers}) => {
-  console.log(typeof answers)
-  answers.map(answer => {
-    console.log(answer.answer_id)
-  })
+
     return (
-      <h1>Answers</h1>
+      <div>
+        {
+          answers.map(({body, createdAt, updatedAt})=>(
+            <>
+             
+              <div className="min-w-screen bg-gray-300 p-4 mb-2">
+              <div>
+              <Viewer data={body} />
+              </div>
+              <div className="flex flex-row justify-between text-xs">
+              <div>Created:<Moment fromNow>{createdAt}</Moment></div>
+              <div>Updated: <Moment fromNow>{updatedAt}</Moment></div>
+              </div>
+              </div>
+              
+              
+            </>
+          ))
+        }
+      </div>
     )
 }
 
 export default AnswerDisplay;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const data = GetAllAnswers()
-    const answers = JSON.stringify(data);
-    return {
-      props: {
-        answers,
-      },
-    };
-  };

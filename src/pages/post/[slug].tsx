@@ -52,8 +52,8 @@ const PostScreen = ({ specificPost, hasError, comments,answers }) => {
         {show ? <Answer  postId={postId} slug={slug}/> : <Comment postId={postId} slug={slug}/>}
       </div>
       <div>
+      <CommentDisplay comments={comments}/>
         <AnswerDisplay answers={answers}/>
-        <CommentDisplay comments={comments}/>
       </div>
     </div>
   );
