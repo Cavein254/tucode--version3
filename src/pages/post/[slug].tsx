@@ -106,6 +106,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     authorId,
   };
 
+  console.log("answers")
+  console.log(answers)
+
   return {
     props: {
       specificPost: foundSlug,
@@ -119,6 +122,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   const pathsWithParams = posts?.map((post) => ({
     params: { slug: post.slug },
   }));
+  console.log(pathsWithParams)
   return {
     paths: pathsWithParams,
     fallback: true,

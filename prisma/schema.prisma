@@ -47,9 +47,14 @@ model User {
   sessions      Session[]
   comments      Comment[]
   snippets      Snippet[]
-  posts         Post[]
-  message Message[]  
-  answers Answer[]
+  posts         Post[]    @relation("writtenposts")
+  message       Message[]
+  answers       Answer[]
+  profile       Profile?
+  favoriteposts Post[]    @relation("favoritePosts")
+
+  @@index([email])
+  
 }
 
 model VerificationToken {
@@ -69,25 +74,39 @@ model Profile {
   createdAt   DateTime? @default(now()) @map(name: "created_at")
   updatedAt   DateTime? @updatedAt @map(name: "updated_at")
   lastSeen    DateTime? @map(name: "last_seen")
+  user        User      @relation(fields: [profileId], references: [user_id])
+  profileId   String    @unique
+
+  @@unique([email,githubUrl])
+  @@index([email])
+ 
 }
 
 model Post {
-  post_id   String    @id @default(cuid())
-  title     String    @unique @db.VarChar(256)
-  body      String    @db.Text
-  slug      String?   @unique
-  levels    level?    @default(Beginner)
-  types     type?     @default(Learning)
-  views     String?
-  likes     String?
-  tags      String?
-  published Boolean?  @default(false)
-  createdAt DateTime? @default(now()) @map(name: "created_at")
-  updatedAt DateTime? @updatedAt @map(name: "updated_at")
-  author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
-  authorId  String?
-  comments  Comment[]
-    answers Answer[]
+  post_id       String    @id @default(cuid())
+  title         String    @unique @db.VarChar(256)
+  body          String    @db.Text
+  slug          String    @unique
+  levels        level     @default(Beginner)
+  types         type?     @default(Learning)
+  views         String?
+  likes         String?
+  tags          String?
+  published     Boolean?  @default(false)
+  createdAt     DateTime? @default(now()) @map(name: "created_at")
+  updatedAt     DateTime? @updatedAt @map(name: "updated_at")
+  author        User      @relation("writtenposts", fields: [authorId], references: [user_id], onDelete: Cascade)
+  authorId      String
+  favoritedBy   User?     @relation("favoritePosts", fields: [favoritedById], references: [user_id], onDelete: Cascade)
+  favoritedById String?
+  comments      Comment[]
+  answers       Answer[]
+
+  @@unique([title,slug])
+  @@index([slug])
+  @@index([title])
+  @@index([authorId])
+
 }
 
 enum type {
@@ -105,14 +124,14 @@ enum level {
 
 model Answer {
   answer_id String    @id @default(cuid())
-  body       String?   
+  body      String
   likes     String?
-  createdAt  DateTime? @default(now()) @map(name: "created_at")
-  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  createdAt DateTime? @default(now()) @map(name: "created_at")
+  updatedAt DateTime? @updatedAt @map(name: "updated_at")
   post      Post      @relation(fields: [postId], references: [post_id])
   postId    String
-  author     User      @relation(fields: [authorId], references: [user_id])
-  authorId   String
+  author    User      @relation(fields: [authorId], references: [user_id])
+  authorId  String
 }
 
 model Snippet {
@@ -126,27 +145,32 @@ model Snippet {
   published  Boolean?  @default(false)
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
+
+  @@unique([title,slug])
+  @@index([slug])
+  @@index([title])
+  @@index([authorId])
 }
 
 model Comment {
-  comment_id        String    @id @default(cuid())
-  body      String    @db.VarChar(300)
-  createdAt DateTime? @default(now()) @map(name: "created_at")
-  updatedAt DateTime? @updatedAt @map(name: "updated_at")
-  post      Post      @relation(fields: [postId], references: [post_id])
-  author    User      @relation(fields: [authorId], references: [user_id])
-  authorId  String
-  postId    String
+  comment_id String    @id @default(cuid())
+  body       String    @db.VarChar(300)
+  createdAt  DateTime? @default(now()) @map(name: "created_at")
+  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  post       Post      @relation(fields: [postId], references: [post_id])
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
+  postId     String
 }
 
 model Message {
-  message_id        String    @id @default(cuid())
-  body      String    @db.VarChar(300)
-  createdAt DateTime? @default(now()) @map(name: "created_at")
-  updatedAt DateTime? @updatedAt @map(name: "updated_at")
-  message      User      @relation(fields: [messageId], references: [user_id])
-  messageId    String
-  ReceiverId  String
+  message_id String    @id @default(cuid())
+  body       String    @db.VarChar(300)
+  createdAt  DateTime? @default(now()) @map(name: "created_at")
+  updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  message    User      @relation(fields: [messageId], references: [user_id])
+  messageId  String
+  ReceiverId String
   //Todo create a foreignkey weaklink to user as the receiver
   //is also of type user
 }

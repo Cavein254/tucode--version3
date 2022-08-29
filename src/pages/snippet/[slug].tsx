@@ -4,7 +4,6 @@ import ListItemBody from "../../components/list/ListItemBody";
 import { GetAllSnippets } from "../api/apiActions";
 
 const SnippetScreen = ({ specificPost, hasError }) => {
-  console.log(specificPost);
   const router = useRouter();
   return (
     <div className="mt-6 p-4 flex flex-col justify-center align-middle">

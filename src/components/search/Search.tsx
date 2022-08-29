@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
-function Search({data}) {
+function Search({data,specificData}) {
   const [query, setQuery] = useState([])
+
 
   const handleSearch = e => {
     e.preventDefault()
@@ -32,7 +33,7 @@ function Search({data}) {
           return (
             <div key={item.slug} >
               <div >
-                <a href={`snippet/${item.slug}`} 
+                <a href={`${specificData.path}/${item.slug}`} 
                 target="_blank" 
                 rel="noreferrer"
                 className="hover:bg-green-500 font-thin"
