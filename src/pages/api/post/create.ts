@@ -28,7 +28,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
     
-  const { title, body, authorId, published, slug } = req.body;
+  const { title, body, authorId, published, slug, tags } = req.body;
  
   try {
     await prisma.post.create({
@@ -38,6 +38,7 @@ export default async function handler(
         authorId,
         published,
         slug,
+        tags
       },
     });
     res.status(200).json({

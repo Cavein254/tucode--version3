@@ -5,9 +5,7 @@ export const fetcher = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  console.log('---==================---------')
-  console.log(url)
-  console.log(data)
+  
   try {
     fetch(url, {
       method: data ? "POST" : "GET",

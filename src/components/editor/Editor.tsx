@@ -45,11 +45,11 @@ function Editor({ data }) {
     const postData = {
       title,
       body: job,
+      tags,
       published: true,
       authorId: "auto",
       slug:slugGenerator(title)
     };
-    console.log(postData)
     fetcher(data.link, postData);
     Router.back();
   };

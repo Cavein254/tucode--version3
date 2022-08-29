@@ -97,6 +97,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     title,
     body,
     slug,
+    levels,
+    types,
     views,
     likes,
     tags,
