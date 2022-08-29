@@ -18,12 +18,12 @@ export default async function handler(
 
       res.status(200).json({
         status: "success",
-        msg: "Post created successfully",
+        msg: "Answer created successfully",
         payload: req.body,
       });
     } catch (error) {
       res.json({
-        status: "Failed to create post",
+        status: "Failed to create Answer",
         error,
         payload: req.body,
       });

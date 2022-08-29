@@ -16,12 +16,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.Text
-  access_token      String? @db.Text
+  refresh_token     String? 
+  access_token      String? 
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.Text
+  id_token          String? 
   session_state     String?
 
   user User @relation(fields: [userId], references: [user_id], onDelete: Cascade)
@@ -49,6 +49,7 @@ model User {
   snippets      Snippet[]
   posts         Post[]
   message Message[]  
+  answers Answer[]
 }
 
 model VerificationToken {
@@ -64,7 +65,7 @@ model Profile {
   email       String?   @unique(map: "users.email_unique")
   githubUrl   String?   @map(name: "github_url")
   githubImage String?   @map(name: "github_image")
-  bio         String    @db.Text
+  bio         String    
   createdAt   DateTime? @default(now()) @map(name: "created_at")
   updatedAt   DateTime? @updatedAt @map(name: "updated_at")
   lastSeen    DateTime? @map(name: "last_seen")
@@ -72,11 +73,9 @@ model Profile {
 
 model Post {
   post_id   String    @id @default(cuid())
-  title     String    @unique @db.VarChar(256)
-  body      String    @db.Text
+  title     String    
+  body      String    
   slug      String?   @unique
-  levels    level?    @default(Beginner)
-  types     type?     @default(Learning)
   views     String?
   likes     String?
   tags      String?
@@ -86,48 +85,37 @@ model Post {
   author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
   authorId  String?
   comments  Comment[]
-    answers Answer[]
-}
-
-enum type {
-  Learning
-  Question
-  Blog
-}
-
-enum level {
-  Beginner
-  Advanced
-  Expert
-  Master
+  answers Answer[]
 }
 
 model Answer {
   answer_id String    @id @default(cuid())
   body       String?   
-  likes     String?
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
   post      Post      @relation(fields: [postId], references: [post_id])
   postId    String
 }
 
 model Snippet {
   snippet_id String    @id @default(cuid())
-  title      String    @db.VarChar(256)
+  title      String    
   slug       String    @unique
   url        String?
-  body       String?   @db.Text
+  body       String?   
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
   published  Boolean?  @default(false)
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
+  
 }
 
 model Comment {
   comment_id        String    @id @default(cuid())
-  body      String    @db.VarChar(300)
+  body      String    
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
   post      Post      @relation(fields: [postId], references: [post_id])
@@ -138,7 +126,7 @@ model Comment {
 
 model Message {
   message_id        String    @id @default(cuid())
-  body      String    @db.VarChar(300)
+  body      String    
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
   message      User      @relation(fields: [messageId], references: [user_id])

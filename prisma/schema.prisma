@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -16,12 +16,12 @@ model Account {
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? 
-  access_token      String? 
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? 
+  id_token          String? @db.Text
   session_state     String?
 
   user User @relation(fields: [userId], references: [user_id], onDelete: Cascade)
@@ -65,7 +65,7 @@ model Profile {
   email       String?   @unique(map: "users.email_unique")
   githubUrl   String?   @map(name: "github_url")
   githubImage String?   @map(name: "github_image")
-  bio         String    
+  bio         String    @db.Text
   createdAt   DateTime? @default(now()) @map(name: "created_at")
   updatedAt   DateTime? @updatedAt @map(name: "updated_at")
   lastSeen    DateTime? @map(name: "last_seen")
@@ -73,9 +73,11 @@ model Profile {
 
 model Post {
   post_id   String    @id @default(cuid())
-  title     String    
-  body      String    
+  title     String    @unique @db.VarChar(256)
+  body      String    @db.Text
   slug      String?   @unique
+  levels    level?    @default(Beginner)
+  types     type?     @default(Learning)
   views     String?
   likes     String?
   tags      String?
@@ -85,37 +87,50 @@ model Post {
   author    User?     @relation(fields: [authorId], references: [user_id], onDelete: Cascade)
   authorId  String?
   comments  Comment[]
-  answers Answer[]
+    answers Answer[]
+}
+
+enum type {
+  Learning
+  Question
+  Blog
+}
+
+enum level {
+  Beginner
+  Advanced
+  Expert
+  Master
 }
 
 model Answer {
   answer_id String    @id @default(cuid())
   body       String?   
+  likes     String?
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
-  author     User      @relation(fields: [authorId], references: [user_id])
-  authorId   String
   post      Post      @relation(fields: [postId], references: [post_id])
   postId    String
+  author     User      @relation(fields: [authorId], references: [user_id])
+  authorId   String
 }
 
 model Snippet {
   snippet_id String    @id @default(cuid())
-  title      String    
+  title      String    @db.VarChar(256)
   slug       String    @unique
   url        String?
-  body       String?   
+  body       String?   @db.Text
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
   published  Boolean?  @default(false)
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
-  
 }
 
 model Comment {
   comment_id        String    @id @default(cuid())
-  body      String    
+  body      String    @db.VarChar(300)
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
   post      Post      @relation(fields: [postId], references: [post_id])
@@ -126,7 +141,7 @@ model Comment {
 
 model Message {
   message_id        String    @id @default(cuid())
-  body      String    
+  body      String    @db.VarChar(300)
   createdAt DateTime? @default(now()) @map(name: "created_at")
   updatedAt DateTime? @updatedAt @map(name: "updated_at")
   message      User      @relation(fields: [messageId], references: [user_id])

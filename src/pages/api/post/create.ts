@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../lib/prisma";
 
+
 // export default async(req:NextApiRequest, res:NextApiResponse) {
 //     if(req.method !== 'POST') {
 //         return res.status(405).json({
@@ -26,9 +27,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  
+    
   const { title, body, authorId, published, slug } = req.body;
-
+ 
   try {
     await prisma.post.create({
       data: {

@@ -13,8 +13,8 @@ const CommentDisplay = ({comments}) => {
             <div>
                 <Viewer data={body} />
                 </div>
-                <div className="text-gray-400 ">
-                    Created:<Moment fromNow>{createdAt}</Moment>
+                <div className="text-gray-400 text-xs">
+                    <Moment fromNow>{createdAt}</Moment>
                 </div>
             </div>
               

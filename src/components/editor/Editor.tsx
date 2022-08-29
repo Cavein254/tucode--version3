@@ -7,6 +7,7 @@ import { SyntaxHighlighter } from "react-syntax-highlighter";
 // import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from "rehype-katex";
 // import emoji from "react-emoji";
+import { Menu } from "@headlessui/react";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
 
@@ -48,6 +49,7 @@ function Editor({ data }) {
       authorId: "auto",
       slug:slugGenerator(title)
     };
+    console.log(postData)
     fetcher(data.link, postData);
     Router.back();
   };
@@ -91,6 +93,38 @@ function Editor({ data }) {
               onChange={(e) => setTags(e.target.value)}
               value={tags}
             />
+          </div>
+
+          <div>
+            <Menu>
+              <Menu.Button className="bg-gray-500 px-4 py-2 rounded-md  ">Level</Menu.Button>
+              <Menu.Items>
+                <Menu.Item>
+                    {({active}) => (
+                        <span className={`${active && 'bg-blue-500'}`}>Beginner</span>
+                    )
+                    }
+                </Menu.Item>
+                <Menu.Item>
+                    {({active}) => (
+                        <span className={`${active && 'bg-blue-500'}`}>Advanced</span>
+                    )
+                    }
+                </Menu.Item>
+                <Menu.Item>
+                    {({active}) => (
+                        <span className={`${active && 'bg-blue-500'}`}>Expert</span>
+                    )
+                    }
+                </Menu.Item>
+                <Menu.Item>
+                    {({active}) => (
+                        <span className={`${active && 'bg-blue-500'}`}>Master</span>
+                    )
+                    }
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
           </div>
           <p className="ml-2 border-none text-sm text-gray-500">
             Make it as long as you &apos;d like...
