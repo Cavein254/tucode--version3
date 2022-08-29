@@ -3,11 +3,13 @@ import Search from "../search/Search";
 import ListItem from "./ListItem";
 
 const List = ({ data, specificData }) => {
+  console.log(":::::::::::::::::")
+  console.log(specificData.url)
   return (
     <div className="m-auto lg:w-4/5">
       <div className="flex flex-col md:flex-row lg:flex-row w-4/5 justify-evenly">
         <div className="">
-          <Search />
+          <Search data={data}/>
         </div>
         <div className="">
         <Link href={specificData.url}>
