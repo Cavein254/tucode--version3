@@ -1,9 +1,8 @@
 import { GetServerSideProps } from "next";
-import prisma from "../../lib/prisma";
 import List from "../components/list/List";
+import { GetAllPosts } from "./api/apiActions";
 
 function posts({ posts }) {
-  
   const specificData = {
     btn_title: "Create a Post",
     url: "/createpost/",
@@ -20,9 +19,7 @@ function posts({ posts }) {
 export default posts;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const postData = await prisma.post.findMany();
-  const allPosts = JSON.stringify(postData);
-  const posts = JSON.parse(allPosts);
+  const posts = await GetAllPosts();
 
   return {
     props: {

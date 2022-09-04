@@ -28,7 +28,7 @@ function MinimalEditor({ data }) {
       body: job,
       published: false,
       authorId: "auto",
-      postId:data.postId,
+      postId: data.postId,
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
@@ -46,11 +46,11 @@ function MinimalEditor({ data }) {
       body: job,
       published: true,
       authorId: "auto",
-      postId:data.postId,
+      postId: data.postId,
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
-    Router.reload()
+    Router.reload();
   };
 
   return (
@@ -115,11 +115,16 @@ function MinimalEditor({ data }) {
               },
             }}
           />
-          {!data.commentBox ? (<button className="bg-gray-300 px-4 py-2 rounded-sm hover:bg-green-200" onClick={publishData}>submit</button> ):null}
+          {!data.commentBox ? (
+            <button
+              className="bg-gray-300 px-4 py-2 rounded-sm hover:bg-green-200"
+              onClick={publishData}
+            >
+              submit
+            </button>
+          ) : null}
         </div>
-        <div>
-          
-        </div>
+        <div></div>
       </div>
     </div>
   );

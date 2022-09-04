@@ -6,36 +6,39 @@ import AnswerDisplay from "../../components/answer/AnswerDisplay";
 import Comment from "../../components/comments/Comment";
 import CommentDisplay from "../../components/comments/CommentDisplay";
 import ListItemBody from "../../components/list/ListItemBody";
-import { GetAllPosts, GetSingleAnswer, GetSingleComment } from "../api/apiActions";
+import {
+  GetAllPosts,
+  GetSingleAnswer,
+  GetSingleComment,
+} from "../api/apiActions";
 
 interface SpecificPost {
-    post_id:String,
-    title:String ,
-    body:String,
-    slug:String,
-    levels:String,
-    types:String,
-    views:String,
-    likes:String,
-    tags:String,
-    published:String,
-    createdAt:String,
-    updatedAt:String,
-    authorId:String,
+  post_id: String;
+  title: String;
+  body: String;
+  slug: String;
+  levels: String;
+  types: String;
+  views: String;
+  likes: String;
+  tags: String;
+  published: String;
+  createdAt: String;
+  updatedAt: String;
+  authorId: String;
 }
 
-const PostScreen = ({ specificPost, hasError, comments,answers }) => {
+const PostScreen = ({ specificPost, hasError, comments, answers }) => {
   const [show, setShow] = useState(false);
   const router = useRouter();
   let postId;
   let slug;
   if (specificPost) {
-    postId = specificPost.post_id
-    slug = specificPost.slug
-  }
-  else {
-    postId = null
-    slug = null
+    postId = specificPost.post_id;
+    slug = specificPost.slug;
+  } else {
+    postId = null;
+    slug = null;
   }
   return (
     <div className="mt-6 p-4 flex flex-col justify-center align-middle">
@@ -49,11 +52,15 @@ const PostScreen = ({ specificPost, hasError, comments,answers }) => {
         </button>
       </div>
       <div className="flex flex-wrap-reverse justify-end">
-        {show ? <Answer  postId={postId} slug={slug}/> : <Comment postId={postId} slug={slug}/>}
+        {show ? (
+          <Answer postId={postId} slug={slug} />
+        ) : (
+          <Comment postId={postId} slug={slug} />
+        )}
       </div>
       <div>
-      <CommentDisplay comments={comments}/>
-        <AnswerDisplay answers={answers}/>
+        <CommentDisplay comments={comments} />
+        <AnswerDisplay answers={answers} />
       </div>
     </div>
   );
@@ -65,10 +72,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const posts = await GetAllPosts();
   const findSlug = posts?.find((post) => pslug === post.slug);
-  const comments = await GetSingleComment(findSlug.post_id)
-  const answers = await GetSingleAnswer(findSlug.post_id)
+  const comments = await GetSingleComment(findSlug.post_id);
+  const answers = await GetSingleAnswer(findSlug.post_id);
 
-  
   if (!findSlug) {
     return {
       props: {
@@ -108,12 +114,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     authorId,
   };
 
+  console.log(comments);
 
   return {
     props: {
       specificPost: foundSlug,
       comments,
-      answers
+      answers,
     },
   };
 };

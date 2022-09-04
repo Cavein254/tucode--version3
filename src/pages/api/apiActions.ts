@@ -3,12 +3,12 @@ import prisma from "../../../lib/prisma";
 export const GetAllPosts = async () => {
   try {
     const data = await prisma.post.findMany({
-      orderBy:{
-        createdAt:'asc'
+      orderBy: {
+        createdAt: "desc",
       },
-      where:{
-        published:true
-      }
+      where: {
+        published: true,
+      },
     });
     const allPosts = JSON.stringify(data);
     const posts = JSON.parse(allPosts);
@@ -22,12 +22,12 @@ export const GetAllPosts = async () => {
 export const GetAllSnippets = async () => {
   try {
     const data = await prisma.snippet.findMany({
-      orderBy:{
-        createdAt:"asc"
+      orderBy: {
+        createdAt: "desc",
       },
-    where:{
-      published:true
-    }
+      where: {
+        published: true,
+      },
     });
     const allSnippet = JSON.stringify(data);
     const snippet = JSON.parse(allSnippet);
@@ -40,9 +40,9 @@ export const GetAllSnippets = async () => {
 export const GetAllAnswers = async () => {
   try {
     const data = await prisma.answer.findMany({
-      orderBy:{
-        createdAt:"asc"
-      }
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     const allAnswers = JSON.stringify(data);
     const answers = JSON.parse(allAnswers);
@@ -55,16 +55,16 @@ export const GetAllAnswers = async () => {
 export const GetAllComments = async () => {
   try {
     const data = await prisma.comment.findMany({
-      where:{
-        parentId:null
+      where: {
+        parentId: null,
       },
-      include:{
-        children:{
-          include:{
-            children:true
-          }
-        }
-      }
+      include: {
+        children: {
+          include: {
+            children: true,
+          },
+        },
+      },
     });
     const allComments = JSON.stringify(data);
     const comments = JSON.parse(allComments);
@@ -78,36 +78,36 @@ export const GetAllComments = async () => {
 export const GetSingleAnswer = async (id) => {
   try {
     const data = await prisma.answer.findMany({
-      where:{
-        postId:id
+      where: {
+        postId: id,
       },
-      orderBy:{
-        createdAt:"asc"
-      }
-    })
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     const allAnswers = JSON.stringify(data);
     const answers = JSON.parse(allAnswers);
-    return answers
+    return answers;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const GetSingleComment = async (id) => {
   try {
     const data = await prisma.comment.findMany({
-      where:{
-        postId:id
+      where: {
+        postId: id,
       },
-      orderBy:{
-        createdAt:"asc"
-      }
-    })
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
     const allComments = JSON.stringify(data);
     const comments = JSON.parse(allComments);
 
-    return comments
+    return comments;
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
