@@ -2,7 +2,14 @@ import prisma from "../../../lib/prisma";
 
 export const GetAllPosts = async () => {
   try {
-    const data = await prisma.post.findMany();
+    const data = await prisma.post.findMany({
+      orderBy:{
+        createdAt:'asc'
+      },
+      where:{
+        published:true
+      }
+    });
     const allPosts = JSON.stringify(data);
     const posts = JSON.parse(allPosts);
 
@@ -14,7 +21,14 @@ export const GetAllPosts = async () => {
 
 export const GetAllSnippets = async () => {
   try {
-    const data = await prisma.snippet.findMany();
+    const data = await prisma.snippet.findMany({
+      orderBy:{
+        createdAt:"asc"
+      },
+    where:{
+      published:true
+    }
+    });
     const allSnippet = JSON.stringify(data);
     const snippet = JSON.parse(allSnippet);
 
@@ -25,7 +39,11 @@ export const GetAllSnippets = async () => {
 };
 export const GetAllAnswers = async () => {
   try {
-    const data = await prisma.answer.findMany();
+    const data = await prisma.answer.findMany({
+      orderBy:{
+        createdAt:"asc"
+      }
+    });
     const allAnswers = JSON.stringify(data);
     const answers = JSON.parse(allAnswers);
 
@@ -36,7 +54,18 @@ export const GetAllAnswers = async () => {
 };
 export const GetAllComments = async () => {
   try {
-    const data = await prisma.comment.findMany();
+    const data = await prisma.comment.findMany({
+      where:{
+        parentId:null
+      },
+      include:{
+        children:{
+          include:{
+            children:true
+          }
+        }
+      }
+    });
     const allComments = JSON.stringify(data);
     const comments = JSON.parse(allComments);
 
@@ -51,6 +80,9 @@ export const GetSingleAnswer = async (id) => {
     const data = await prisma.answer.findMany({
       where:{
         postId:id
+      },
+      orderBy:{
+        createdAt:"asc"
       }
     })
     const allAnswers = JSON.stringify(data);
@@ -66,6 +98,9 @@ export const GetSingleComment = async (id) => {
     const data = await prisma.comment.findMany({
       where:{
         postId:id
+      },
+      orderBy:{
+        createdAt:"asc"
       }
     })
     const allComments = JSON.stringify(data);

@@ -39,7 +39,7 @@ const Home: NextPage = ({ users }) => {
     }
   };
   return (
-    <main>
+    <main className="dark:bg-black">
       <h1 className="text-center font-bold text-2xl mt-4">Notes</h1>
       <form
         onSubmit={(e) => {

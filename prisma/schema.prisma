@@ -154,13 +154,16 @@ model Snippet {
 
 model Comment {
   comment_id String    @id @default(cuid())
-  body       String    @db.VarChar(300)
+  body       String    @db.VarChar(300) 
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
   post       Post      @relation(fields: [postId], references: [post_id])
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
   postId     String
+  children Comment[] @relation("comment_children")
+  parent Comment? @relation("comment_children", fields: [parentId], references: [comment_id])
+  parentId String?
 }
 
 model Message {

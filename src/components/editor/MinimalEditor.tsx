@@ -50,7 +50,7 @@ function MinimalEditor({ data }) {
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
-    Router.back()
+    Router.reload()
   };
 
   return (

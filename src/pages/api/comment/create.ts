@@ -1,19 +1,30 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../../../lib/prisma";
 
+const parentId="cl7iir6n30447jbiav6dwgens"
+
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse
   ) {
-    
     const { body, authorId, postId } = req.body;
+    console.log(req.body)
+    
     try {
       await prisma.comment.create({
-        data: {
+        data:{
           body,
+          postId,
           authorId,
-          postId
+          parentId
         },
+        include:{
+          children:{
+            include:{
+              children:true
+            }
+          }
+        }
       });
 
       res.status(200).json({

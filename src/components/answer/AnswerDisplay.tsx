@@ -5,8 +5,8 @@ const AnswerDisplay = ({answers}) => {
     return (
       <div>
         {
-          answers.map(({body, createdAt, updatedAt})=>(
-            <>
+          answers.map(({answer_id,body, createdAt, updatedAt})=>(
+            <div key={answer_id}>
              
               <div className="min-w-screen bg-gray-300 p-4 mb-2">
               <div>
@@ -19,7 +19,7 @@ const AnswerDisplay = ({answers}) => {
               </div>
               
               
-            </>
+            </div>
           ))
         }
       </div>

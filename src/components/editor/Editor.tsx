@@ -16,7 +16,7 @@ interface FormData {
   body: string;
 }
 // import Logo from '../../imgs/head.jpg';
-function Editor({ data }) {
+const Editor = ({ data }) => {
   const Router = useRouter();
   const [job, setJob] = useState(data.holder);
   const [tags, setTags] = useState("");
@@ -51,16 +51,18 @@ function Editor({ data }) {
       slug:slugGenerator(title)
     };
     fetcher(data.link, postData);
-    Router.back();
+    Router.reload();
   };
 
   //Todo Add rehype-emoji Plugin
   //Todo refactor css
   //Todo Add alternating saying if possible
-  //Todo reduce spaces between lines in the textbox
   //Todo create dropdown for levels
   //Todo create dropdown for type
   //Todo create textbox for tags
+  //Todo rewrite using useMemo
+
+  console.log("component re-rendering")
 
   return (
     <div className="min-h-screen overflow-hidden border-none  sm:mx-1">
@@ -184,6 +186,6 @@ function Editor({ data }) {
       </div>
     </div>
   );
-}
+};
 
 export default Editor;

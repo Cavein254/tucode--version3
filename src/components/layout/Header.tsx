@@ -1,63 +1,87 @@
-import { signIn } from "next-auth/react";
+import { useTheme } from 'next-themes';
 import Link from "next/link";
-import { AiFillTrophy } from "react-icons/ai";
+import { FaGuitar } from "react-icons/fa";
 
 function Header() {
-  return (
-    <div className="overflow-x-hidden max-w-full flex flex-row justify-between items-center bg-yellow-600 p-0 m-0 ">
-      {/* logo area */}
-      <div className="p-2 flex flex-row text-center justify-center items-center hover:cursor-pointer">
+  const {systemTheme,theme,setTheme} = useTheme();
+  const renderThemeChanger = () =>{
+    const currentTheme = theme === 'system' ? systemTheme : theme;
+    if(currentTheme === 'dark') {
+      return (
         <div className="">
-          <AiFillTrophy size={54} className="text-white" />
-        </div>
-        <div className="text-2xl text-white font-bold pl-1">
-          <Link href="/">TuCode</Link>
-        </div>
+        <button onClick={()=> setTheme('light')}>light</button>
       </div>
-      {/* Added links */}
-      <div className="flex flex-row text-white hover:cursor-pointer  justify-between invisible md:visible text-lg font-bold">
-        <div className="hover:text-gray-700 ">
-          <Link href="/posts">Posts</Link>
-        </div>
-        <div className="hover:text-gray-700 pl-2">
-          <Link href="/snippet">Snippets</Link>
-        </div>
-        <div className="hover:text-gray-700 pl-2">
-          <Link href="/Blog">Blog</Link>
-        </div>
-        <div className="hover:text-gray-700 px-4">
-          <Link href="/posts">Question</Link>
-        </div>
-      </div>
-      {/* searchbar area */}
-      <div>
-        <div className="invisible md:visible lg:visible">
-          <input
-            type="text"
-            placeholder="Search"
-            className="max-w-full text-gray-700 text-lg mx-4 my-2 px-2 py-1 rounded-md active:ring-0 border-none font-semibold"
-          />
-        </div>
-      </div>
-      {/* log in area */}
-      <div>
-        <div>
-          <div> Image </div>
-          <div> Username </div>
-        </div>
-        <div>
-          <div>
-            <button
-              onClick={() =>
-                signIn("github", {
-                  callbackUrl: process.env.NEXTAUTH_URL,
-                })
-              }
-            >
-              Login
-            </button>
+
+      )
+    }else {
+      return (
+<div className="">
+          <button onClick={()=>setTheme('dark')}>Dark</button>
           </div>
+      )
+    }
+  }; 
+
+  return (
+    <div className="sticky top-0 z-50">
+      <div>
+        {/* logo */}
+
+        <div className="flex flex-row justify-between bg-black pl-2 m-0">
+          <div className="flex flex-col text-white pl-2 pt-2">
+            <div>
+              <div className="flex flex-row justify-center items-center">
+                <Link href="/">
+                <FaGuitar size={45} />
+                </Link>
+                
+                <div className=" text-2xl"><Link href='/'>TUCODE</Link></div>
+                
+              </div>
+              <div>
+                <div className=" text-sm">code.commit.deploy</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mid */}
+          {/* Todo: Make it hidden in small devices */}
+          <div className="text-gray-400 font-xs mt-8 hidden md:flex">
+            <div className="pr-2">
+              <Link href="/posts/">POSTS</Link>
+            </div>
+            <div className="pr-2">
+              <Link href="/snippets/">SNIPPETS</Link>
+            </div>
+            <div className="pr-2">
+              <Link href="/questions/">QUESTIONS</Link>
+            </div>
+            <div className="pr-2">
+              <Link href="/about/">ABOUT US</Link>
+            </div>
+            <div className="pr-2">
+              <Link href="/help/">HELP</Link>
+            </div>
+            <div className="pr-2">
+              <Link href="/contact/">CONTACT US</Link>
+            </div>
+           
+          </div>
+          {/* login */}
+          {/*show only if user is not logged in */}
+          <div className="flex flex-row justify-end hidden md:visible lg:visible">
+            <div className=" pr-2 mr-4 text-gray-400 justify-end">
+              <div className="">Create My Account / </div>
+              <div className="">Login</div>
+            </div>
+          </div>
+          <div className="flex flex-row justify-end items-center text-white">
+                <FaGuitar size={45} />
+            </div>
         </div>
+        <div className="">
+        </div>
+        
       </div>
     </div>
   );

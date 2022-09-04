@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "build": "babel src -d lib",
-    "test": "jest"
+    "test": "jest",
+    "prebuild": "prisma generate"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",

@@ -15,7 +15,7 @@ if (typeof window === "undefined") {
     prisma = new PrismaClient();
   } else {
     if (!global.prisma) {
-      global.prisma = new PrismaClient();
+      global.prisma = new PrismaClient({log:["query"]});
     }
     prisma = global.prisma;
   }
