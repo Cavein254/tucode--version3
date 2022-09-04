@@ -7,7 +7,7 @@
     "build-live": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build": "babel src -d lib",
+    "build": "next build",
     "test": "jest",
     "prebuild": "prisma generate"
   },
