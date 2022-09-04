@@ -12,20 +12,20 @@ import {
   GetSingleComment,
 } from "../api/apiActions";
 
-interface SpecificPost {
-  post_id: String;
-  title: String;
-  body: String;
-  slug: String;
-  levels: String;
-  types: String;
-  views: String;
-  likes: String;
-  tags: String;
-  published: String;
-  createdAt: String;
-  updatedAt: String;
-  authorId: String;
+interface Post {
+  post_id?: String;
+  title?: String;
+  body?: String;
+  slug?: String;
+  levels?: String;
+  types?: String;
+  views?: String;
+  likes?: String;
+  tags?: String;
+  published?: String;
+  createdAt?: String;
+  updatedAt?: String;
+  authorId?: String;
 }
 
 const PostScreen = ({ specificPost, hasError, comments, answers }) => {
@@ -131,7 +131,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   }));
   return {
     paths: pathsWithParams,
-    fallback: true,
+    fallback: false,
   };
 };
 
