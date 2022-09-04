@@ -2,7 +2,7 @@ import "katex/dist/katex.min.css";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 // import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 // import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from "rehype-katex";

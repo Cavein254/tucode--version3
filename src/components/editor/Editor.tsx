@@ -2,7 +2,7 @@ import "katex/dist/katex.min.css";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
-import { SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 // import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 // import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from "rehype-katex";
@@ -40,7 +40,7 @@ const Editor = ({ data }) => {
     setJob("");
     setTitle("");
   };
-  const publishData =  (e: React.SyntheticEvent) => {
+  const publishData = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const postData = {
       title,
@@ -48,7 +48,7 @@ const Editor = ({ data }) => {
       tags,
       published: true,
       authorId: "auto",
-      slug:slugGenerator(title)
+      slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
     Router.reload();
@@ -62,7 +62,7 @@ const Editor = ({ data }) => {
   //Todo create textbox for tags
   //Todo rewrite using useMemo
 
-  console.log("component re-rendering")
+  console.log("component re-rendering");
 
   return (
     <div className="min-h-screen overflow-hidden border-none  sm:mx-1">
@@ -99,31 +99,33 @@ const Editor = ({ data }) => {
 
           <div>
             <Menu>
-              <Menu.Button className="bg-gray-500 px-4 py-2 rounded-md  ">Level</Menu.Button>
+              <Menu.Button className="bg-gray-500 px-4 py-2 rounded-md  ">
+                Level
+              </Menu.Button>
               <Menu.Items>
                 <Menu.Item>
-                    {({active}) => (
-                        <span className={`${active && 'bg-blue-500'}`}>Beginner</span>
-                    )
-                    }
+                  {({ active }) => (
+                    <span className={`${active && "bg-blue-500"}`}>
+                      Beginner
+                    </span>
+                  )}
                 </Menu.Item>
                 <Menu.Item>
-                    {({active}) => (
-                        <span className={`${active && 'bg-blue-500'}`}>Advanced</span>
-                    )
-                    }
+                  {({ active }) => (
+                    <span className={`${active && "bg-blue-500"}`}>
+                      Advanced
+                    </span>
+                  )}
                 </Menu.Item>
                 <Menu.Item>
-                    {({active}) => (
-                        <span className={`${active && 'bg-blue-500'}`}>Expert</span>
-                    )
-                    }
+                  {({ active }) => (
+                    <span className={`${active && "bg-blue-500"}`}>Expert</span>
+                  )}
                 </Menu.Item>
                 <Menu.Item>
-                    {({active}) => (
-                        <span className={`${active && 'bg-blue-500'}`}>Master</span>
-                    )
-                    }
+                  {({ active }) => (
+                    <span className={`${active && "bg-blue-500"}`}>Master</span>
+                  )}
                 </Menu.Item>
               </Menu.Items>
             </Menu>
