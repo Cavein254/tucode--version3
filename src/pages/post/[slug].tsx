@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     };
   }
-  //Todo: Add dates to the object. Problem passing Json
+  //Todo: Add dates to the object. Problem Json
   const {
     post_id,
     title,

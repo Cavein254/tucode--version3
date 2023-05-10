@@ -12,7 +12,7 @@ interface Users {
 interface FormData {
   username: string;
 }
-const Home: NextPage = ({ users }) => {
+const Home: NextPage = ({ posts }) => {
   const [form, setForm] = React.useState<FormData>({ username: "" });
 
   async function create(data: FormData) {
@@ -69,12 +69,12 @@ const Home: NextPage = ({ users }) => {
 export default Home;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await prisma.user.findMany();
-  const users = JSON.stringify(data);
+  const data = await prisma.post.findMany();
+  const posts = JSON.stringify(data);
 
   return {
     props: {
-      users,
+      posts,
     },
   };
 };
