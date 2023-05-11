@@ -4,3 +4,5 @@
 3. Prisma errors not displaying
 4. Display comments
 5. Bug in minimal editor rerendering display
+6. Do not submit empty questions, comments, answers
+7. Create a better page not found
