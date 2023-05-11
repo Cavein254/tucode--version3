@@ -6,9 +6,9 @@ export default async function handler(
     res: NextApiResponse
   ) {
     
-    const { title, body, author = "auto", published, slug } = req.body;
+    const { title, body, authorId = "auto", published, slug } = req.body;
     console.log("on backend");
-    console.log(author)
+    console.log(authorId)
     try {
       await prisma.snippet.create({
         data: {

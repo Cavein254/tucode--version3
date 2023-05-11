@@ -6,8 +6,8 @@ export const fetcher = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  console.log(data);
   try {
+    console.log(data);
     await fetch(url, {
       method: data ? "POST" : "GET",
       credentials: "include",
