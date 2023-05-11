@@ -6,3 +6,4 @@
 5. Bug in minimal editor rerendering display
 6. Do not submit empty questions, comments, answers
 7. Create a better page not found
+8. Get current user from session

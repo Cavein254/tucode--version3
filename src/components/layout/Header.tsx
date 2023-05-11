@@ -63,18 +63,6 @@ function Header() {
             <div className="pr-2">
               <Link href="/snippets/">SNIPPETS</Link>
             </div>
-            <div className="pr-2">
-              <Link href="/questions/">QUESTIONS</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/about/">ABOUT US</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/help/">HELP</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/contact/">CONTACT US</Link>
-            </div>
           </div>
           {/* login */}
           {/*show only if user is not logged in */}
