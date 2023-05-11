@@ -10,13 +10,13 @@ import rehypeKatex from "rehype-katex";
 import { Menu } from "@headlessui/react";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
-
 interface FormData {
   title: string;
   body: string;
 }
 // import Logo from '../../imgs/head.jpg';
 const Editor = ({ data }) => {
+  const link = {data};
   const Router = useRouter();
   const [job, setJob] = useState(data.holder);
   const [tags, setTags] = useState("");
@@ -32,8 +32,9 @@ const Editor = ({ data }) => {
       slug: slugGenerator(title),
     };
 
-    fetcher(data.link, postData);
-    Router.back();
+    fetcher(link, postData);
+    console.log(link)
+    // Router.push("/posts");
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -51,7 +52,6 @@ const Editor = ({ data }) => {
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
-    Router.reload();
   };
 
   //Todo Add rehype-emoji Plugin

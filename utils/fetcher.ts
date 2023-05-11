@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
+
 export const fetcher = async (
   url,
   data,
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
-  
   try {
-    fetch(url, {
+    await fetch(url, {
       method: data ? "POST" : "GET",
       credentials: "include",
       headers: {
@@ -17,11 +17,11 @@ export const fetcher = async (
         "Access-Control-Allow-Origin":"*"
       },
       body: JSON.stringify(data),
-    }).then((res) => {
-      res.json();
+    }).then(async (res) => {
+      await res.json();
     });
   } catch (error) {
-    res.json({
+    await res.json({
       status: "failed",
       error,
       payload: req.body,

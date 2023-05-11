@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
 model Account {
@@ -54,7 +55,6 @@ model User {
   favoriteposts Post[]    @relation("favoritePosts")
 
   @@index([email])
-  
 }
 
 model VerificationToken {
@@ -77,9 +77,8 @@ model Profile {
   user        User      @relation(fields: [profileId], references: [user_id])
   profileId   String    @unique
 
-  @@unique([email,githubUrl])
+  @@unique([email, githubUrl])
   @@index([email])
- 
 }
 
 model Post {
@@ -102,11 +101,10 @@ model Post {
   comments      Comment[]
   answers       Answer[]
 
-  @@unique([title,slug])
+  @@unique([title, slug])
   @@index([slug])
   @@index([title])
   @@index([authorId])
-
 }
 
 enum type {
@@ -146,7 +144,7 @@ model Snippet {
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
 
-  @@unique([title,slug])
+  @@unique([title, slug])
   @@index([slug])
   @@index([title])
   @@index([authorId])
@@ -154,16 +152,16 @@ model Snippet {
 
 model Comment {
   comment_id String    @id @default(cuid())
-  body       String    @db.VarChar(300) 
+  body       String    @db.VarChar(300)
   createdAt  DateTime? @default(now()) @map(name: "created_at")
   updatedAt  DateTime? @updatedAt @map(name: "updated_at")
   post       Post      @relation(fields: [postId], references: [post_id])
   author     User      @relation(fields: [authorId], references: [user_id])
   authorId   String
   postId     String
-  children Comment[] @relation("comment_children")
-  parent Comment? @relation("comment_children", fields: [parentId], references: [comment_id])
-  parentId String?
+  children   Comment[] @relation("comment_children")
+  parent     Comment?  @relation("comment_children", fields: [parentId], references: [comment_id])
+  parentId   String?
 }
 
 model Message {
