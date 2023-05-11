@@ -6,6 +6,7 @@ export const fetcher = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  console.log(data);
   try {
     await fetch(url, {
       method: data ? "POST" : "GET",

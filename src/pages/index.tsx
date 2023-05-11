@@ -24,7 +24,7 @@ const Home: NextPage = ({ posts }) => {
         },
         method: "POST",
       }).then(() => {
-        setForm({ username: "" });
+        setForm({ username: "auto" });
       });
     } catch (error) {
       console.log(error);
