@@ -37,15 +37,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-const mydata = {
-  title:"My nice title",
-  body:"my body",
-  slug:"Thesamebody",
-  authorId:"auto",
-  published: true,
-  tags:["c++","java","node"]
-}
-const {title, body, authorId, published, tags, slug} =mydata;
+
+const {title, body, authorId, published, tags, slug} = req.body;
  console.log("object")
   try {
     await prisma.post.create({
