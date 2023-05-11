@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+// import "katex/dist/katex.min.css";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";

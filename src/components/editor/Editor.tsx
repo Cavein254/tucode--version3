@@ -34,7 +34,6 @@ const Editor = ({ data }) => {
 
     fetcher(link, postData);
     console.log(link)
-    // Router.push("/posts");
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -52,9 +51,10 @@ const Editor = ({ data }) => {
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
+    Router.push("/posts");
   };
 
-  //Todo Add rehype-emoji Plugin
+  //Todo: Add rehype-emoji Plugin
   //Todo refactor css
   //Todo Add alternating saying if possible
   //Todo create dropdown for levels
