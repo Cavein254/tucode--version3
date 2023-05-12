@@ -13,10 +13,9 @@ export const GetAllPosts = async () => {
     const allPosts = JSON.stringify(data);
     const posts = JSON.parse(allPosts);
 
-    console.log(posts)
     return posts;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -32,12 +31,12 @@ export const GetAllSnippets = async () => {
     });
     const allSnippet = JSON.stringify(data);
     const snippet = JSON.parse(allSnippet);
-    console.log(snippet)
     return snippet;
   } catch (error) {
     console.log(error);
   }
 };
+
 export const GetAllAnswers = async () => {
   try {
     const data = await prisma.answer.findMany({
@@ -53,6 +52,7 @@ export const GetAllAnswers = async () => {
     console.log(error);
   }
 };
+
 export const GetAllComments = async () => {
   try {
     const data = await prisma.comment.findMany({

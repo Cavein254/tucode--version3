@@ -9,7 +9,7 @@
 8. Get current user from session
 9. Fix the header
 10. Create a landing page
-
+11. Log errors to a db instead of consolelog
 ## On Editor
   //Todo: Add rehype-emoji Plugin
   //Todo refactor css
