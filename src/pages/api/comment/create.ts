@@ -27,8 +27,7 @@ export default async function handler(
         },
       },
     });
-
-    res.status(200).json({
+   res.status(200).json({
       status: "success",
       msg: "comment created successfully",
       payload: req.body,
