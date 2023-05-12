@@ -9,3 +9,12 @@
 8. Get current user from session
 9. Fix the header
 10. Create a landing page
+
+## On Editor
+  //Todo: Add rehype-emoji Plugin
+  //Todo refactor css
+  //Todo Add alternating saying if possible
+  //Todo create dropdown for levels
+  //Todo create dropdown for type
+  //Todo create textbox for tags
+  //Todo rewrite using useMemo
