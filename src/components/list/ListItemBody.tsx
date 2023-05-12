@@ -116,11 +116,11 @@ const ListItem = ({ data }) => {
             className={`flex justify-between text-gray-900 font-medium text-sm ${myColor}`}
           >
             <div>
-              Created:<Moment fromNow>{new Date(createdAt)}</Moment>{" "}
+              Created:<Moment fromNow>{JSON.parse(createdAt)}</Moment>{" "}
             </div>
             <div>Level: {levels}</div>
             <div>
-              Updated: <Moment fromNow>{new Date(updatedAt)}</Moment>
+              Updated: <Moment fromNow>{JSON.parse(updatedAt)}</Moment>
             </div>
           </div>
         </div>
