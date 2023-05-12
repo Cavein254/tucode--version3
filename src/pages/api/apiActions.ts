@@ -33,7 +33,7 @@ export const GetAllSnippets = async () => {
     const snippet = JSON.parse(allSnippet);
     return snippet;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -49,7 +49,7 @@ export const GetAllAnswers = async () => {
 
     return answers;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -72,7 +72,7 @@ export const GetAllComments = async () => {
 
     return comments;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -90,7 +90,7 @@ export const GetSingleAnswer = async (id) => {
     const answers = JSON.parse(allAnswers);
     return answers;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -109,6 +109,6 @@ export const GetSingleComment = async (id) => {
 
     return comments;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
