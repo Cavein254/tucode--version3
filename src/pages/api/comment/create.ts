@@ -9,7 +9,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { body, authorId, postId } = req.body;
-  console.log(req.body);
+
 
   try {
     await prisma.comment.create({

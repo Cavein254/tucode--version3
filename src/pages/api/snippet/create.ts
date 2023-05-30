@@ -7,8 +7,6 @@ export default async function handler(
   ) {
     
     const { title, body, authorId = "auto", published, slug } = req.body;
-    console.log("on backend");
-    console.log(authorId)
     try {
       await prisma.snippet.create({
         data: {

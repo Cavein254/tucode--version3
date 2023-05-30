@@ -2,8 +2,14 @@ import { GetServerSideProps } from "next";
 import List from "../components/list/List";
 import { GetAllPosts } from "./api/apiActions";
 
+type SpecificData = {
+  btn_title?: string,
+  url?:string,
+  path?:string
+}
+
 function posts({ posts }) {
-  const specificData = {
+  const specificData:SpecificData = {
     btn_title: "Create a Post",
     url: "/createpost/",
     path: "/post/",

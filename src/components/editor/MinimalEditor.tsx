@@ -88,7 +88,7 @@ function MinimalEditor({ data }:Props) {
       <div>
         <div className="">
           <ReactMarkdown
-            children={data.btn ? job : null}
+            children ={data.btn ? job : null}
             remarkPlugins={[remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{
