@@ -1,4 +1,6 @@
 import { GetServerSideProps } from "next";
+import DropDown from "../components/dropdown/DropDown";
+import Header from "../components/layout/Header";
 import List from "../components/list/List";
 import { GetAllPosts } from "./api/apiActions";
 
@@ -11,6 +13,8 @@ function posts({ posts }) {
 
   return (
     <div>
+      <DropDown />
+      <Header />
       <List data={posts} specificData={specificData} />
     </div>
   );

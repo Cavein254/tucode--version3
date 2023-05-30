@@ -14,15 +14,20 @@ function Header() {
     e.preventDefault();
     signOut();
   };
+  const testTheme = () => {
+    console.log("Another produce finder");
+  }
   const renderThemeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
     if (currentTheme === "dark") {
+      console.log(currentTheme);
       return (
         <div className="">
           <button onClick={() => setTheme("light")}>light</button>
         </div>
       );
     } else {
+      console.log(currentTheme);
       return (
         <div className="">
           <button onClick={() => setTheme("dark")}>Dark</button>
@@ -83,9 +88,9 @@ function Header() {
               )}
             </div>
           </div>
-          <div className="flex flex-row justify-end items-center text-white">
-            <FaGuitar size={45} />
-          </div>
+          <button className="flex flex-row justify-end items-center text-white bg-green-200" onClick={renderThemeChanger}>
+            <FaGuitar size={45}  className="text-red-500 hover:text-orange-400 "/>
+          </button>
         </div>
         <div className=""></div>
       </div>

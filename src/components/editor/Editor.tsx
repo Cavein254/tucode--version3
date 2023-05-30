@@ -53,17 +53,9 @@ const Editor = ({ data }) => {
     Router.push(data.re_route);
   };
 
-  //Todo: Add rehype-emoji Plugin
-  //Todo refactor css
-  //Todo Add alternating saying if possible
-  //Todo create dropdown for levels
-  //Todo create dropdown for type
-  //Todo create textbox for tags
-  //Todo rewrite using useMemo
 
-  console.log("component re-rendering");
 
-  return (
+    return (
     <div className="min-h-screen overflow-hidden border-none  sm:mx-1">
       <div className="m-auto mt-5 max-h-screen min-h-fit border-none  sm:mt-10 sm:w-full sm:px-1 md:w-4/5 md:px-0 lg:w-4/5 lg:px-3.5">
         <div className="w-full border-none ">

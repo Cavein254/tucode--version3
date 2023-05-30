@@ -10,12 +10,12 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
 
-interface FormData {
+type Props = {
   title: string;
   body: string;
 }
 // import Logo from '../../imgs/head.jpg';
-function MinimalEditor({ data }) {
+function MinimalEditor({ data }:Props) {
   const Router = useRouter();
   const [job, setJob] = useState("");
   const [tags, setTags] = useState("");

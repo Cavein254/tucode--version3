@@ -5,7 +5,7 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import Header from "../components/layout/Header";
+import Layout from "../components/layout/Layout";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -25,11 +25,15 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
         </Head>
-        <Header />
+        {/* <Header /> */}
+        <Layout>
+          
+        </Layout>
         <body>
           <Main />
           <NextScript />
         </body>
+        
       </Html>
     );
   }
