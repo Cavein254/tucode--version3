@@ -21,6 +21,7 @@ const Editor = ({ data }) => {
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
   const [levels, setLevels] = useState("");
+  const [types, setTypes] = useState("");
 
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ const Editor = ({ data }) => {
       title,
       tags,
       levels,
+      types,
       body: job,
       published: false,
       authorId: "auto",
@@ -47,6 +49,7 @@ const Editor = ({ data }) => {
       title,
       body: job,
       tags,
+      types,
       levels,
       published: true,
       authorId: "auto",
@@ -90,14 +93,22 @@ const Editor = ({ data }) => {
               value={tags}
             />
           </div>
-          <div>
-            <div>
+          <div className="flex justify-between xs:flex-col">
+            <div className="w-[100%]">
             <label className="font-2xl font-bold mr-2">Select Level</label>
                 <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={levels}  onChange={e => setLevels(e.target.value)}>
                   <option value="Beginner">Beginner </option>
                   <option value="Advanced">Advanced </option>
                   <option value="Expert">Expert </option>
                   <option value="Master">Master </option>
+                </select>
+            </div>
+            <div className="w-[100%]">
+            <label className="font-2xl font-bold mr-2">Select Type</label>
+                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={types}  onChange={e => setTypes(e.target.value)}>
+                  <option value="Learning">Learning </option>
+                  <option value="Question">Question </option>
+                  <option value="Blog">Blog </option>
                 </select>
             </div>
           </div>
