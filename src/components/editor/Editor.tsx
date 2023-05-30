@@ -20,15 +20,14 @@ const Editor = ({ data }) => {
   const [job, setJob] = useState(data.holder);
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
-  const [level, setLevel] = useState("");
+  const [levels, setLevels] = useState("");
 
-  console.log(level)
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const postData = {
       title,
       tags,
-      level,
+      levels,
       body: job,
       published: false,
       authorId: "auto",
@@ -48,7 +47,7 @@ const Editor = ({ data }) => {
       title,
       body: job,
       tags,
-      level,
+      levels,
       published: true,
       authorId: "auto",
       slug: slugGenerator(title),
@@ -94,7 +93,7 @@ const Editor = ({ data }) => {
           <div>
             <div>
             <label className="font-2xl font-bold mr-2">Select Level</label>
-                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={level}  onChange={e => setLevel(e.target.value)}>
+                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={levels}  onChange={e => setLevels(e.target.value)}>
                   <option value="Beginner">Beginner </option>
                   <option value="Advanced">Advanced </option>
                   <option value="Expert">Expert </option>
