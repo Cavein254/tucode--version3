@@ -17,7 +17,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const pslug = context.params?.slug;
 
   const snippets = await GetAllSnippets();
-  console.log(snippets)
   const findSlug = snippets?.find((snippet) => pslug === snippet.slug);
 
   if (!findSlug) {

@@ -6,6 +6,7 @@ import { FaGuitar } from "react-icons/fa";
 function Header() {
   const session = null;
   const { systemTheme, theme, setTheme } = useTheme();
+  setTheme('dark')
   const handleSignin = (e) => {
     e.preventDefault();
     signIn();
@@ -14,26 +15,31 @@ function Header() {
     e.preventDefault();
     signOut();
   };
-  const testTheme = () => {
-    console.log("Another produce finder");
-  }
+
+
   const renderThemeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
-    if (currentTheme === "dark") {
-      console.log(currentTheme);
-      return (
-        <div className="">
-          <button onClick={() => setTheme("light")}>light</button>
-        </div>
-      );
+    if (currentTheme === 'light') {
+      console.log(theme)
+      setTheme('dark')
     } else {
-      console.log(currentTheme);
-      return (
-        <div className="">
-          <button onClick={() => setTheme("dark")}>Dark</button>
-        </div>
-      );
+      setTheme('light')
     }
+    // if (currentTheme === "dark") {
+    //   console.log(currentTheme);
+    //   return (
+    //     <div className="">
+    //       <button onClick={() => setTheme("light")}>light</button>
+    //     </div>
+    //   );
+    // } else {
+    //   console.log(currentTheme);
+    //   return (
+    //     <div className="">
+    //       <button onClick={() => setTheme("dark")}>Dark</button>
+    //     </div>
+    //   );
+    // }
   };
 
   return (

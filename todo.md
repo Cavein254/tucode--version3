@@ -10,6 +10,7 @@
 9. Fix the header
 10. Create a landing page
 11. Log errors to a db instead of consolelog
+12. **** create context for changing theme
 ## On Editor
   //Todo: Add rehype-emoji Plugin
   //Todo refactor css
