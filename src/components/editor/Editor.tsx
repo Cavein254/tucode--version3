@@ -7,7 +7,6 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 // import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from "rehype-katex";
 // import emoji from "react-emoji";
-import { Menu } from "@headlessui/react";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
 interface FormData {
@@ -21,11 +20,15 @@ const Editor = ({ data }) => {
   const [job, setJob] = useState(data.holder);
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
+  const [level, setLevel] = useState("");
+
+  console.log(level)
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const postData = {
       title,
       tags,
+      level,
       body: job,
       published: false,
       authorId: "auto",
@@ -45,6 +48,7 @@ const Editor = ({ data }) => {
       title,
       body: job,
       tags,
+      level,
       published: true,
       authorId: "auto",
       slug: slugGenerator(title),
@@ -64,7 +68,7 @@ const Editor = ({ data }) => {
             <textarea
               rows={1}
               placeholder={"Enter the title here ...."}
-              className="focus sm:text-md w-full border-none text-left text-xl font-light text-gray-900 focus:border-none focus:ring-0"
+              className="focus sm:text-md w-full border-none text-left text-xl font-light text-gray-900 focus:border-none focus:ring-0 dark:text-white"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             />
@@ -74,7 +78,7 @@ const Editor = ({ data }) => {
             onChange={(e) => setJob(e.target.value)}
             placeholder={data.holder}
             rows={10}
-            className="sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0"
+            className="sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0 dark:text-white"
             value={job}
           />
 
@@ -82,44 +86,21 @@ const Editor = ({ data }) => {
             <input
               type="text"
               placeholder="Enter tags here separated by comma as: Javascript, nodejs, reactjs"
-              className="flex flex-grow px-4 py-2 text-xl text-bold text-gray-800 rounded-md min-w-full"
+              className="flex flex-grow px-4 py-2 text-xl text-bold text-gray-800 rounded-md min-w-full my-6 dark:text-white"
               onChange={(e) => setTags(e.target.value)}
               value={tags}
             />
           </div>
-
           <div>
-            <Menu>
-              <Menu.Button className="bg-gray-500 px-4 py-2 rounded-md  ">
-                Level
-              </Menu.Button>
-              <Menu.Items>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>
-                      Beginner
-                    </span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>
-                      Advanced
-                    </span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>Expert</span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>Master</span>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
+            <div>
+            <label className="font-2xl font-bold mr-2">Select Level</label>
+                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={level}  onChange={e => setLevel(e.target.value)}>
+                  <option value="Beginner">Beginner </option>
+                  <option value="Advanced">Advanced </option>
+                  <option value="Expert">Expert </option>
+                  <option value="Master">Master </option>
+                </select>
+            </div>
           </div>
           <p className="ml-2 border-none text-sm text-gray-500">
             Make it as long as you &apos;d like...

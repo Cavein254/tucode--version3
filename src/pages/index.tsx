@@ -1,5 +1,4 @@
 import { GetServerSideProps } from "next";
-import DropDown from "../components/dropdown/DropDown";
 import List from "../components/list/List";
 import { GetAllPosts } from "./api/apiActions";
 
@@ -12,7 +11,6 @@ function posts({ posts }) {
 
   return (
     <>
-      <DropDown />
       <List data={posts} specificData={specificData} />
       </>
   );

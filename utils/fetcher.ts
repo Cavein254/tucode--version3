@@ -7,7 +7,6 @@ export const fetcher = async (
   res: NextApiResponse
 ) => {
   try {
-    console.log(data);
     await fetch(url, {
       method: data ? "POST" : "GET",
       credentials: "include",
@@ -30,7 +29,7 @@ export const fetcher = async (
   }
 };
 
-export const slugGenerator = (title) => {
+export const slugGenerator = (title:string) => {
   const newTitle = title.replaceAll(" ", "-");
   const newDay = new Date();
   const slug =
