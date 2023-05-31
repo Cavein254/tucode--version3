@@ -5,7 +5,6 @@ import Document, {
   Main,
   NextScript,
 } from "next/document";
-import Header from "../components/layout/Header";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -25,7 +24,6 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
         </Head>
-        <Header />
         <body>
           <Main />
           <NextScript />

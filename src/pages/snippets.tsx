@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import prisma from "../../lib/prisma";
 import List from "../components/list/List";
+import { GetAllSnippets } from "./api/apiActions";
 
 function snippets({ snippets }) {
   const specificData = {
@@ -22,7 +22,7 @@ function snippets({ snippets }) {
 export default snippets;
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = await prisma.snippet.findMany();
+  const data = await GetAllSnippets();
   const allSnippets = JSON.stringify(data);
   const snippets = JSON.parse(allSnippets);
 

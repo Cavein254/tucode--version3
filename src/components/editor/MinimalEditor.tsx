@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+// import "katex/dist/katex.min.css";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -10,12 +10,12 @@ import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
 
-interface FormData {
+type Props = {
   title: string;
   body: string;
 }
 // import Logo from '../../imgs/head.jpg';
-function MinimalEditor({ data }) {
+function MinimalEditor({ data }:Props) {
   const Router = useRouter();
   const [job, setJob] = useState("");
   const [tags, setTags] = useState("");
@@ -88,7 +88,7 @@ function MinimalEditor({ data }) {
       <div>
         <div className="">
           <ReactMarkdown
-            children={data.btn ? job : null}
+            children ={data.btn ? job : null}
             remarkPlugins={[remarkMath]}
             rehypePlugins={[rehypeKatex]}
             components={{

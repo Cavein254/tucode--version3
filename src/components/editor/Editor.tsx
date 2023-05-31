@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+// import "katex/dist/katex.min.css";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import ReactMarkdown from "react-markdown";
@@ -7,33 +7,36 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 // import { vs } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import rehypeKatex from "rehype-katex";
 // import emoji from "react-emoji";
-import { Menu } from "@headlessui/react";
 import remarkMath from "remark-math";
 import { fetcher, slugGenerator } from "../../../utils/fetcher";
-
 interface FormData {
   title: string;
   body: string;
 }
 // import Logo from '../../imgs/head.jpg';
 const Editor = ({ data }) => {
+  const link = {data};
   const Router = useRouter();
   const [job, setJob] = useState(data.holder);
   const [tags, setTags] = useState("");
   const [title, setTitle] = useState("");
+  const [levels, setLevels] = useState("");
+  const [types, setTypes] = useState("");
+
   const saveData = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const postData = {
       title,
       tags,
+      levels,
+      types,
       body: job,
       published: false,
       authorId: "auto",
       slug: slugGenerator(title),
     };
 
-    fetcher(data.link, postData);
-    Router.back();
+    fetcher(link, postData);
   };
   const clearData = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -46,25 +49,19 @@ const Editor = ({ data }) => {
       title,
       body: job,
       tags,
+      types,
+      levels,
       published: true,
       authorId: "auto",
       slug: slugGenerator(title),
     };
     fetcher(data.link, postData);
-    Router.reload();
+    Router.push(data.re_route);
   };
 
-  //Todo Add rehype-emoji Plugin
-  //Todo refactor css
-  //Todo Add alternating saying if possible
-  //Todo create dropdown for levels
-  //Todo create dropdown for type
-  //Todo create textbox for tags
-  //Todo rewrite using useMemo
 
-  console.log("component re-rendering");
 
-  return (
+    return (
     <div className="min-h-screen overflow-hidden border-none  sm:mx-1">
       <div className="m-auto mt-5 max-h-screen min-h-fit border-none  sm:mt-10 sm:w-full sm:px-1 md:w-4/5 md:px-0 lg:w-4/5 lg:px-3.5">
         <div className="w-full border-none ">
@@ -73,7 +70,7 @@ const Editor = ({ data }) => {
             <textarea
               rows={1}
               placeholder={"Enter the title here ...."}
-              className="focus sm:text-md w-full border-none text-left text-xl font-light text-gray-900 focus:border-none focus:ring-0"
+              className="focus sm:text-md w-full border-none text-left text-xl font-light text-gray-900 focus:border-none focus:ring-0 dark:text-white"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             />
@@ -83,7 +80,7 @@ const Editor = ({ data }) => {
             onChange={(e) => setJob(e.target.value)}
             placeholder={data.holder}
             rows={10}
-            className="sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0"
+            className="sm:text-md  block h-full w-full border-none text-lg text-gray-600 focus:border-none focus:ring-0 dark:text-white"
             value={job}
           />
 
@@ -91,44 +88,29 @@ const Editor = ({ data }) => {
             <input
               type="text"
               placeholder="Enter tags here separated by comma as: Javascript, nodejs, reactjs"
-              className="flex flex-grow px-4 py-2 text-xl text-bold text-gray-800 rounded-md min-w-full"
+              className="flex flex-grow px-4 py-2 text-xl text-bold text-gray-800 rounded-md min-w-full my-6 dark:text-white"
               onChange={(e) => setTags(e.target.value)}
               value={tags}
             />
           </div>
-
-          <div>
-            <Menu>
-              <Menu.Button className="bg-gray-500 px-4 py-2 rounded-md  ">
-                Level
-              </Menu.Button>
-              <Menu.Items>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>
-                      Beginner
-                    </span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>
-                      Advanced
-                    </span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>Expert</span>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <span className={`${active && "bg-blue-500"}`}>Master</span>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
+          <div className="flex justify-between xs:flex-col">
+            <div className="w-[100%]">
+            <label className="font-2xl font-bold mr-2">Select Level</label>
+                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={levels}  onChange={e => setLevels(e.target.value)}>
+                  <option value="Beginner">Beginner </option>
+                  <option value="Advanced">Advanced </option>
+                  <option value="Expert">Expert </option>
+                  <option value="Master">Master </option>
+                </select>
+            </div>
+            <div className="w-[100%]">
+            <label className="font-2xl font-bold mr-2">Select Type</label>
+                <select className="w-1/5 rounded-md mt-4 flex justify-center items-center" value={types}  onChange={e => setTypes(e.target.value)}>
+                  <option value="Learning">Learning </option>
+                  <option value="Question">Question </option>
+                  <option value="Blog">Blog </option>
+                </select>
+            </div>
           </div>
           <p className="ml-2 border-none text-sm text-gray-500">
             Make it as long as you &apos;d like...

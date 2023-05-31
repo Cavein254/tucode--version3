@@ -1,4 +1,4 @@
-import "katex/dist/katex.min.css";
+// import "katex/dist/katex.min.css";
 import ReactMarkdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
 // import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';

@@ -15,7 +15,7 @@ export const GetAllPosts = async () => {
 
     return posts;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -31,12 +31,12 @@ export const GetAllSnippets = async () => {
     });
     const allSnippet = JSON.stringify(data);
     const snippet = JSON.parse(allSnippet);
-
     return snippet;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
+
 export const GetAllAnswers = async () => {
   try {
     const data = await prisma.answer.findMany({
@@ -49,9 +49,10 @@ export const GetAllAnswers = async () => {
 
     return answers;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
+
 export const GetAllComments = async () => {
   try {
     const data = await prisma.comment.findMany({
@@ -71,7 +72,7 @@ export const GetAllComments = async () => {
 
     return comments;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -89,7 +90,7 @@ export const GetSingleAnswer = async (id) => {
     const answers = JSON.parse(allAnswers);
     return answers;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -108,6 +109,6 @@ export const GetSingleComment = async (id) => {
 
     return comments;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

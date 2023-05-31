@@ -6,6 +6,7 @@ import { FaGuitar } from "react-icons/fa";
 function Header() {
   const session = null;
   const { systemTheme, theme, setTheme } = useTheme();
+  setTheme('dark')
   const handleSignin = (e) => {
     e.preventDefault();
     signIn();
@@ -14,21 +15,31 @@ function Header() {
     e.preventDefault();
     signOut();
   };
+
+
   const renderThemeChanger = () => {
     const currentTheme = theme === "system" ? systemTheme : theme;
-    if (currentTheme === "dark") {
-      return (
-        <div className="">
-          <button onClick={() => setTheme("light")}>light</button>
-        </div>
-      );
+    if (currentTheme === 'light') {
+      console.log(theme)
+      setTheme('dark')
     } else {
-      return (
-        <div className="">
-          <button onClick={() => setTheme("dark")}>Dark</button>
-        </div>
-      );
+      setTheme('light')
     }
+    // if (currentTheme === "dark") {
+    //   console.log(currentTheme);
+    //   return (
+    //     <div className="">
+    //       <button onClick={() => setTheme("light")}>light</button>
+    //     </div>
+    //   );
+    // } else {
+    //   console.log(currentTheme);
+    //   return (
+    //     <div className="">
+    //       <button onClick={() => setTheme("dark")}>Dark</button>
+    //     </div>
+    //   );
+    // }
   };
 
   return (
@@ -63,18 +74,6 @@ function Header() {
             <div className="pr-2">
               <Link href="/snippets/">SNIPPETS</Link>
             </div>
-            <div className="pr-2">
-              <Link href="/questions/">QUESTIONS</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/about/">ABOUT US</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/help/">HELP</Link>
-            </div>
-            <div className="pr-2">
-              <Link href="/contact/">CONTACT US</Link>
-            </div>
           </div>
           {/* login */}
           {/*show only if user is not logged in */}
@@ -95,9 +94,9 @@ function Header() {
               )}
             </div>
           </div>
-          <div className="flex flex-row justify-end items-center text-white">
-            <FaGuitar size={45} />
-          </div>
+          <button className="flex flex-row justify-end items-center text-white bg-green-200" onClick={renderThemeChanger}>
+            <FaGuitar size={45}  className="text-red-500 hover:text-orange-400 "/>
+          </button>
         </div>
         <div className=""></div>
       </div>

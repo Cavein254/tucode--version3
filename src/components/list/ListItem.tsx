@@ -11,6 +11,7 @@ import Moment from "react-moment";
 const ListItem = ({ data, itemPath }) => {
   const [color, setColor] = useState("");
   var myColor = "bg-green-400";
+  var typeColor =  "bg-gray-900"
   const {
     title,
     body,
@@ -41,6 +42,17 @@ const ListItem = ({ data, itemPath }) => {
     myColor = "bg-yellow-400";
   }
 
+  if (types !== "" && types?.valueOf() === "Learning") {
+    typeColor = "bg-orange-400";
+  }
+  if (types !== "" && types?.valueOf() === "Question") {
+    typeColor = "bg-purple-400";
+  }
+  if (types !== "" && types?.valueOf() === "Blog") {
+    typeColor = "bg-pink-400";
+  }
+  
+
   const tag = tags?.split();
 
   return (
@@ -57,7 +69,7 @@ const ListItem = ({ data, itemPath }) => {
               <div className="-mt-9 ">
                 <AiFillGooglePlusCircle size={60} className="text-red-500" />
               </div>
-              <div>
+              <div  className={`flex justify-between text-gray-900 font-medium text-sm px-8 ${typeColor}`}>
                 <h5>{types}</h5>
               </div>
               <div>

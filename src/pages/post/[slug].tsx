@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     };
   }
-  //Todo: Add dates to the object. Problem passing Json
+
   const {
     post_id,
     title,
@@ -114,7 +114,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     authorId,
   };
 
-  console.log(comments);
 
   return {
     props: {
