@@ -2,6 +2,12 @@ import Link from "next/link";
 import Search from "../search/Search";
 import ListItem from "./ListItem";
 
+type SpecificData = {
+  btn_title?: string,
+  url?:string,
+  path?:string
+}
+
 const List = ({ data, specificData }) => {
   return (
     <div className="m-auto lg:w-4/5">
